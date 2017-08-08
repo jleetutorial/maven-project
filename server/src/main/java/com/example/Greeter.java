@@ -10,8 +10,7 @@ public class Greeter {
    */
   public Greeter() {
 
-  }
-  
+  } 
 /**
   *@param someone the name of the preson 
   *@return greeting string
