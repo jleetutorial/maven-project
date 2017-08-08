@@ -11,9 +11,9 @@ public class Greeter {
   public Greeter() {
 
   } 
-/*
-  *@return greeting string
-  */
+ /**
+   * This is a constructor for .
+   */
   public final String greet(final String someone) {
     return String.format("Hello, %s!", someone);
   }
