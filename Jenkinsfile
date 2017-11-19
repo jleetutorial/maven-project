@@ -14,9 +14,9 @@ pipeline {
             findFiles(glob: '*.war')
           }
         }
-        stage('') {
+        stage('error') {
           steps {
-            fileExists '*.war'
+            fileExists 'webapp.war'
           }
         }
       }
