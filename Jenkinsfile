@@ -22,5 +22,10 @@ pipeline {
         }
       }
     }
+    stage('result') {
+      steps {
+        sh 'find / -name "*.war"'
+      }
+    }
   }
 }
