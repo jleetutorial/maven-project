@@ -8,8 +8,17 @@ pipeline {
       }
     }
     stage('Find war') {
-      steps {
-        findFiles(glob: '*.war')
+      parallel {
+        stage('Find war') {
+          steps {
+            findFiles(glob: '*.war')
+          }
+        }
+        stage('') {
+          steps {
+            fileExists '*.war'
+          }
+        }
       }
     }
   }
