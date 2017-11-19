@@ -10,6 +10,7 @@ pipeline {
     stage('Find war') {
       parallel {
         stage('Find war') {
+          agent any
           steps {
             findFiles(glob: '*.war')
           }
