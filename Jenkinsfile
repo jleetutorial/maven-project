@@ -24,8 +24,7 @@ pipeline {
     }
     stage('result') {
       steps {
-        sh '''whoami
-'''
+        sh 'find /var/lib/jenkins -name "*.war"'
       }
     }
   }
