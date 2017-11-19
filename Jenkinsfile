@@ -7,7 +7,7 @@ pipeline {
         sh 'ps -ef | grep jenkins'
       }
     }
-    stage('') {
+    stage('Find war') {
       steps {
         findFiles(glob: '*.war')
       }
