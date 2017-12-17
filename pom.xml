@@ -21,14 +21,6 @@
     <module>webapp</module>
   </modules>
 
-  <distributionManagement>
-    <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-    </site>
-  </distributionManagement>
-
   <build>
     <plugins>
       <plugin>
@@ -167,8 +159,13 @@
       <id>nexus</id>
       <url>http://localhost:8081/nexus/#view-repositories;2~browsestorage</url>
       <skipStaging>true</skipStaging>
-   </snapshotRepository>
-</distributionManagement>                
+   </snapshotRepository>         
+   <site>
+      <id>site-server</id>
+      <name>Test Project Site</name>
+      <url>file:///tmp/maven-project-site</url>
+   </site>
+</distributionManagement>   
          
   <dependencyManagement>
     <dependencies>
