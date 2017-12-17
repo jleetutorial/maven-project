@@ -161,16 +161,14 @@
       </plugins>
     </pluginManagement>
   </build>
-
-<server>
-<plugin>
-<configuration>
-      <serverId>nexus</serverId>
-      <nexusUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
+         
+<distributionManagement>
+   <snapshotRepository>
+      <id>nexus</id>
+      <url>http://localhost:8081/nexus/#view-repositories;2~browsestorage</url>
       <skipStaging>true</skipStaging>
-   </configuration>
-</plugin>
-</server>
+   </snapshotRepository>
+</distributionManagement>                
          
   <dependencyManagement>
     <dependencies>
