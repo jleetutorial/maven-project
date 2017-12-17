@@ -170,7 +170,7 @@
       <skipStaging>true</skipStaging>
    </configuration>
 </plugin>
-<server>
+</server>
          
   <dependencyManagement>
     <dependencies>
