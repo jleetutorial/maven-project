@@ -38,13 +38,6 @@
           <target>1.6</target>
         </configuration>
       </plugin>
- <plugin>            
-   <configuration>
-      <serverId>nexus</serverId>
-      <nexusUrl>http://localhost:8081/nexus/#view-repositories;2~browseindex</nexusUrl>
-      <skipStaging>true</skipStaging>
-   </configuration>
-</plugin>
            
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
