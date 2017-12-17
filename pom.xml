@@ -162,6 +162,16 @@
     </pluginManagement>
   </build>
 
+<server>
+<plugin>
+<configuration>
+      <serverId>nexus</serverId>
+      <nexusUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
+      <skipStaging>true</skipStaging>
+   </configuration>
+</plugin>
+<server>
+         
   <dependencyManagement>
     <dependencies>
       <dependency>
