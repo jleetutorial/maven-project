@@ -20,14 +20,9 @@
    
   <servers>
         <server>
-            <id>5209-flags-transformation</id>
-            <username>flags_admin</username>
-            <password>n2b2n0i7j3</password>
-        </server>
-        <server>
-            <id>5209-flags-transformation-snapshot</id>
-            <username>flags_admin</username>
-            <password>n2b2n0i7j3</password>
+            <id>nexux</id>
+            <username>admin</username>
+            <password>admin</password>
         </server>
  </servers>
 </settings>
