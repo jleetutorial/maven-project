@@ -158,7 +158,6 @@
    <snapshotRepository>
       <id>nexus</id>
       <url>http://localhost:8081/nexus/#view-repositories;2~browsestorage</url>
-      <skipStaging>true</skipStaging>
    </snapshotRepository>         
    <site>
       <id>site-server</id>
