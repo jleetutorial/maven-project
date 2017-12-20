@@ -158,7 +158,7 @@
    </executions>
          <configuration>
                   <serverId>nexus</serverId>
-                  <nexuxUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
+                  <nexusUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
          </configuration>
 </plugin>
                
