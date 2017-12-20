@@ -176,11 +176,6 @@
       <id>nexus</id>
       <url>http://localhost:8081/nexus/#view-repositories;2~browsestorage</url>
    </repository>         
-   <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-   </site>
 </distributionManagement>   
          
   <dependencyManagement>
