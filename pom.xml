@@ -6,7 +6,7 @@
   <groupId>com.example.maven-project</groupId>
   <artifactId>maven-project</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>Maven Project</name>
   <description>Sample Maven project with a working, deployable site.</description>
   <url>http://www.example.com</url>
@@ -149,13 +149,17 @@
    <version>2.8.1</version>
    <executions>
       <execution>
-         <id>nexus</id>
+         <id>default-deploy</id>
          <phase>deploy</phase>
          <goals>
             <goal>deploy</goal>
          </goals>
       </execution>
    </executions>
+         <configuration>
+                  <serverId>nexus</serverId>
+                  <nexuxUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
+         </configuration>
 </plugin>
                
         <plugin>
