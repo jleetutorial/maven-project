@@ -1,14 +1,14 @@
 pipeline {
     agent any
     stages{
-        stage('Build Package'){
+        stage ('Build Package'){
             steps {
                 build job: 'package'
             }
             
                 }
         }
-        stage('Test'){
+        stage ('Test'){
             steps {
                build job: 'static analysis'
             }
