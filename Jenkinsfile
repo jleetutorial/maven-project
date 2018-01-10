@@ -8,9 +8,9 @@ pipeline {
             
                 }
         }
-        stage('Deploy to Staging'){
+        stage('Test'){
             steps {
-               echo '... Deploiement effectué avec succès ...'
+               build job: 'static analysis'
             }
         }
     }
