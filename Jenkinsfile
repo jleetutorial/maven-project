@@ -3,14 +3,14 @@ pipeline {
     stages{
         stage('Build'){
             steps {
-                sh 'echo "Bonjour Issam'
+                echo "Bonjour Issam"
             }
             post {
                 success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    echo "Now Archiving artifact"
                 }
             }
         }
     }
+}
 }
