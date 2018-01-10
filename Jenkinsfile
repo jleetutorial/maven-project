@@ -10,11 +10,12 @@ pipeline {
                 steps {
                 build job: 'first-jenkins-job'
                 }
-            }
+     
             post {
                 success {
                     echo 'Pipeline is ok'
                 }
+            }
             }
             
                 }
