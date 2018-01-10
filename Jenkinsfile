@@ -5,7 +5,7 @@ pipeline {
             steps {
                 build job: 'package'
             }
-            steps ('first jenkins job'){
+            stage ('first jenkins job'){
                 build job: 'first-jenkins-job'
             }
             post {
