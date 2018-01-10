@@ -8,7 +8,7 @@ pipeline {
             
                 }
         }
-        stage ('Test'){
+        stage ( 'Test' ){
             steps {
                build job: 'static analysis'
             }
