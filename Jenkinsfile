@@ -8,7 +8,7 @@ pipeline {
             
                 }
         }
-        stage ('Deploy to Staging'){
+        stage('Deploy to Staging'){
             steps {
                echo '... Deploiement effectué avec succès ...'
             }
