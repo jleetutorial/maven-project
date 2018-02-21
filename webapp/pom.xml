@@ -14,7 +14,6 @@
   <packaging>war</packaging>
   <name>Webapp</name>
   <description>Webapp.</description>
-
   <build>
     <finalName>${project.artifactId}</finalName>
 
