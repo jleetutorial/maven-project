@@ -1,1 +1,1 @@
-c'est un projet maven de test (nouveau test)
+c'est un projet maven de test avec CI/CD Jenkins
