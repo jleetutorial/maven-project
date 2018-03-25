@@ -1,5 +1,4 @@
 package com.example;
-
 /**
  * This is a class test for Jenkins
  */
