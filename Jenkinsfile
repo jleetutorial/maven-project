@@ -1,22 +1,21 @@
-pipeline {
+
+ pipeline {
     agent any
-    stages{
-        stage ('Build Package'){
+
+    stages {
+        stage('Build') {
             steps {
-                build job: 'package'
+                echo 'Building..'
             }
         }
-            stage ('first jenkins job'){
-                steps {
-                build job: 'first-jenkins-job'
-                }
-     
-            post {
-                success {
-                    echo 'Pipeline is ok'
-                }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
             }
-            }
-            
-                }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
