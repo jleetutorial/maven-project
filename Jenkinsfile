@@ -10,6 +10,7 @@ pipeline {
                 steps {
                 build job: 'deploy-to-staging'
                 }
+        }
             stage ('first jenkins job'){
                 steps {
                 build job: 'first-jenkins-job'
