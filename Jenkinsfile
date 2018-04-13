@@ -31,13 +31,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i /C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        bat "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "scp -i /C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
