@@ -17,7 +17,7 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
             post {
                 success {
@@ -31,29 +31,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         bat "pscp -i C:/Users/shres/jenkins/NorthVirgina.ppk **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
-=======
-                        sh "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
->>>>>>> dba78354150fce4f7a78f27e4f7cf488d2fa1d71
-=======
-                        sh "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
->>>>>>> dba78354150fce4f7a78f27e4f7cf488d2fa1d71
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         bat "pscp -i C:/Users/shres/jenkins/NorthVirgina.ppk **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-=======
-                        sh "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
->>>>>>> dba78354150fce4f7a78f27e4f7cf488d2fa1d71
-=======
-                        sh "scp -i C:/Users/shres/jenkins/NorthVirgina.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
->>>>>>> dba78354150fce4f7a78f27e4f7cf488d2fa1d71
                     }
                 }
             }
