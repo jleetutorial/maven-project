@@ -10,6 +10,10 @@ pipeline {
          pollSCM('* * * * *')
      }
 
+	tools {
+	maven 'localMaven' //This was missing in original jenkinsfile
+
+        } 
 stages{
         stage('Build'){
             steps {
