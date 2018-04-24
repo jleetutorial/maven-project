@@ -28,12 +28,12 @@
       <url>file:///tmp/maven-project-site</url>
     </site>
     <repository>
-        <repositoryId>releases</repositoryId>
+        <id>releases</id>
         <name>Releases</name>
         <url>http://13.127.3.58:8081/nexus/content/repositories/releases/</url>      
     </repository>
     <snapshotRepository>
-        <repositoryId>snapshots</repositoryId>
+        <id>snapshots</id>
         <name>Snapshots</name>
         <url>http://13.127.3.58:8081/nexus/content/repositories/snapshots/</url>      
     </snapshotRepository>  
