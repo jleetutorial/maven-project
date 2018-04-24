@@ -162,7 +162,7 @@
     </pluginManagement>
   </build>
 
-  <distributionManagement>
+    <distributionManagement>
      
          <repository>
             <id>releases</id>
@@ -175,7 +175,7 @@
             <url>http://13.127.3.58:8081/nexus/content/repositories/snapshots/</url>      
          </snapshotRepository>       
                   
-  </distributionManagement>
+    </distributionManagement>
          
   <dependencyManagement>
     <dependencies>
