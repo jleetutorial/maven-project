@@ -26,22 +26,22 @@
       <id>site-server</id>
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
-      </site>
+    </site>
     <repositary>
       <id>sample-rel</id>
       <name>sample-rel</name>
       <url>http://13.127.3.58:8081/nexus/content/repositories/sample-rel/</url>        
     </repositary>       
-    
-           
-           
-    <snapshotRepository>
+     <snapshotRepository>
         <id>sample-snap</id>
         <name>sample-snap</name>
         <url>http://13.127.3.58:8081/nexus/content/repositories/sample-snap/</url>      
-   </snapshotRepository>  
+     </snapshotRepository>  
   </distributionManagement>
 
+           
+           
+   
   <build>
     <plugins>
       <plugin>
