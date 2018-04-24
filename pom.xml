@@ -27,11 +27,19 @@
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
       </site>
+    <repositary>
+      <id>sample-rel</id>
+      <name>sample-rel</name>
+      <url>http://13.127.3.58:8081/nexus/content/repositories/sample-rel/</url>        
+    </repositary>       
+    
+           
+           
     <snapshotRepository>
-        <id>newage</id>
-        <name>newage</name>
-        <url>http://13.127.3.58:8081/nexus/content/repositories/newage/</url>      
-    </snapshotRepository>  
+        <id>sample-snap</id>
+        <name>sample-snap</name>
+        <url>http://13.127.3.58:8081/nexus/content/repositories/sample-snap/</url>      
+   </snapshotRepository>  
   </distributionManagement>
 
   <build>
