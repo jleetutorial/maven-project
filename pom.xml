@@ -27,11 +27,11 @@
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
     </site>
-    <repositary>
+    <repository>
       <id>sample-rel</id>
       <name>sample-rel</name>
       <url>http://13.127.3.58:8081/nexus/content/repositories/sample-rel/</url>        
-    </repositary>       
+    </repository>       
      <snapshotRepository>
         <id>sample-snap</id>
         <name>sample-snap</name>
