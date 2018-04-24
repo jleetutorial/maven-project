@@ -27,6 +27,16 @@
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
     </site>
+    <repository>
+        <id>releases</id>
+        <name>Releases</name>
+        <url>http://13.127.3.58:8081/nexus/content/repositories/releases/</url>      
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>Snapshots</name>
+        <url>http://13.127.3.58:8081/nexus/content/repositories/snapshots/</url>      
+    </snapshotRepository>  
   </distributionManagement>
 
   <build>
@@ -162,20 +172,7 @@
     </pluginManagement>
   </build>
 
-    <distributionManagement>
-     
-         <repository>
-            <id>releases</id>
-            <name>Releases</name>
-            <url>http://13.127.3.58:8081/nexus/content/repositories/releases/</url>      
-         </repository>
-         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Snapshots</name>
-            <url>http://13.127.3.58:8081/nexus/content/repositories/snapshots/</url>      
-         </snapshotRepository>       
-                  
-    </distributionManagement>
+   
          
   <dependencyManagement>
     <dependencies>
