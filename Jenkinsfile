@@ -3,7 +3,11 @@ pipeline{
   stages{
     stage('Build'){
       steps{
-        bat 'mvn clean package'
+        if(isUnix()){
+          sh 'mvn clean package'
+        }else{
+          bat 'mvn clean package'
+        }
       }
     }
   }
