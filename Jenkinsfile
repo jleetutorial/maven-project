@@ -15,10 +15,10 @@ pipeline{
           archiveArtifacts artifacts: '**/*.war'
         }
       }
-      stage ('Deploy to Staging'){
-        steps {
-          build job: 'DeployArtifac'
-        }
+    }
+    stage ('Deploy to Staging'){
+      steps {
+        build job: 'DeployArtifac'
       }
     }
   }
