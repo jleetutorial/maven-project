@@ -1,13 +1,11 @@
 pipeline{ 
   agent any
   stages{
-    stage('Build'){
-      steps{
-        if(isUnix()){
+    stage('Build'){      
+      if(isUnix()){
           sh 'mvn clean package'
-        }else{
-          bat 'mvn clean package'
-        }
+      }else{
+        bat 'mvn clean package'
       }
       post {
         success {
