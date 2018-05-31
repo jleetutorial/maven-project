@@ -3,42 +3,23 @@ pipeline{
   tools {
     maven 'maven'
   }
+  parameters {
+    string(name: 'tomcat_qa', defaultValue: 'localhost', description: 'QA server on local')
+    string(name: 'tomcat_prod', defaultValue: '18.220.209.126', description: 'Production Server on AWS')
+    string(name: 'ssh_key_folder', defaultValue: '${USERPROFILE}\GIT\DocumentacionClientes\Itera\AWS\SSH\')
+  }
+  triggers {
+    pollSCM('* * * * *')
+  }
   stages{
     stage('Build'){
-      steps{
-        script {
-          if(isUnix()){
-            sh 'mvn clean package'
-          }else{
-            bat 'mvn clean package'
-          }
-        }
+      steps {
+        sh 'mvn clean package'
       }
       post {
         success {
           echo 'Now Archiving...'
-          archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
-        }
-      }
-    }
-    stage ('Deploy to Staging'){
-      steps {
-        build job: 'DeployArtifac'
-      }
-    }
-    stage ('Deploy to Production'){
-      steps{
-        timeout(time:5, unit:'DAYS'){
-          input message:'Approve Deployment to PRODUCTION?'
-        }
-        build job: 'DeployToProd'
-      }
-      post {
-        success {
-          echo 'Code deployed to Production.'
-        }
-        failure {
-          echo ' Deployment failed.'
+          archiveArtifacts artifacts: '**/target/*.war'
         }
       }
     }
