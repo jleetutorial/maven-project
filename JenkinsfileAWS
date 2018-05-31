@@ -4,9 +4,9 @@ pipeline{
     maven 'maven'
   }
   parameters {
-    string(name: 'tomcat_qa', defaultValue: 'localhost', description: 'QA server on local')
+    string(name: 'tomcat_qa', defaultValue: 'C:\\apache-tomcat-9.0.8-qa\\webapps\\', description: 'QA server on local')
     string(name: 'tomcat_prod', defaultValue: '18.220.209.126', description: 'Production Server on AWS')
-    string(name: 'ssh_key_folder', defaultValue: "\\AWS\\SSH\\")
+    string(name: 'ssh_key_folder', defaultValue: "C:\\AWS\\SSH\\")
   }
   triggers {
     pollSCM '* * * * *' 
@@ -38,12 +38,12 @@ pipeline{
       parallel{
         stage ('Deploy to Staging'){
           steps {
-            bat "copy /Y webapp\\target\\webapp.war C:\\apache-tomcat-9.0.8-qa\\webapps"
+            bat "copy /Y webapp\\target\\webapp.war ${params.tomcat_qa}"
           }
         }
         stage ('Deploy to Production'){
           steps {
-            bat "pscp -batch -i %USERPROFILE%${params.ssh_key_folder}tomcat-PoC.ppk webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+            bat "pscp -batch -i ${params.ssh_key_folder}tomcat-PoC.ppk webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
           }
         }
       }
