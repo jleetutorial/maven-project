@@ -29,11 +29,11 @@ pipeline{
         }
       }
     }
-    /*stage('Copy artifact to workfolder'){
-      steps{
-        copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace(), target: 'C:\\deployWars'
-      }
-    }*/
+    //stage('Copy artifact to workfolder'){
+    //  steps{
+    //    copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace(), target: 'C:\\deployWars'
+    //  }
+    //}
     stage ('Deployments'){
       parallel{
         stage ('Deploy to Staging'){
