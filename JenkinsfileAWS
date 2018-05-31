@@ -29,13 +29,12 @@ pipeline{
         }
       }
     }
-    stage('Unarchive'){
+    stage('Copy artifact to workfolder'){
       steps{
-        unarchive mapping: ['**/target/*.war': '*.war']
+        copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace()
       }
     }
     stage ('Deployments'){
-      
       parallel{
         stage ('Deploy to Staging'){
           steps {
