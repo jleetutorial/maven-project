@@ -3,6 +3,11 @@ pipeline{
   tools {
     maven 'maven'
   }
+  parameters {
+    string(name: 'tomcat_qa', defaultValue: 'localhost', description: 'QA server on local')
+    string(name: 'tomcat_prod', defaultValue: '18.220.209.126', description: 'Production Server on AWS')
+    string(name: 'ssh_key_folder', defaultValue: '${USERPROFILE}\\GIT\\DocumentacionClientes\\Itera\\AWS\\SSH\\')
+  }
   stages{
     stage('Build'){
       steps{
