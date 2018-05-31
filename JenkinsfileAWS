@@ -31,7 +31,7 @@ pipeline{
     }
     stage('Copy artifact to workfolder'){
       steps{
-        copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace()
+        copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: lastSuccessful(), target: 'C:\\deployWars'
       }
     }
     stage ('Deployments'){
