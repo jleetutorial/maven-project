@@ -31,7 +31,7 @@ pipeline{
     }
     stage('Unarchive'){
       steps{
-        unarchive()
+        unarchive mapping: ['**/target/*.war': '.']
       }
     }
     stage ('Deployments'){
