@@ -9,7 +9,7 @@ pipeline{
     string(name: 'ssh_key_folder', defaultValue: '${USERPROFILE}\\GIT\\DocumentacionClientes\\Itera\\AWS\\SSH\\')
   }
   triggers {
-    pollSCM('* * * * *')
+    pollSCM '* * * * *' 
   }
   stages{
     stage('Build'){
@@ -29,7 +29,13 @@ pipeline{
         }
       }
     }
+    stage('Unarchive'){
+      steps{
+        unarchive
+      }
+    }
     stage ('Deployments'){
+      
       parallel{
         stage ('Deploy to Staging'){
           steps {
