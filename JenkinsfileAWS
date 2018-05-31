@@ -43,7 +43,7 @@ pipeline{
         }
         stage ('Deploy to Production'){
           steps {
-            bat "pscp -i ${params.ssh_key_folder}tomcat-PoC.pem webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+            bat "pscp -batch -i ${params.ssh_key_folder}tomcat-PoC.pem webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
           }
         }
       }
