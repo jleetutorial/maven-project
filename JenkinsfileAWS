@@ -38,7 +38,7 @@ pipeline{
       parallel{
         stage ('Deploy to Staging'){
           steps {
-            bat 'copy -f webapp\\target\\webapp.war C:\\apache-tomcat-9.0.8-qa\\webapps'
+            bat 'copy /Y webapp\\target\\webapp.war C:\\apache-tomcat-9.0.8-qa\\webapps'
           }
         }
         stage ('Deploy to Production'){
