@@ -8,6 +8,9 @@ pipeline{
     string(name: 'tomcat_prod', defaultValue: '18.220.209.126', description: 'Production Server on AWS')
     string(name: 'ssh_key_folder', defaultValue: '${USERPROFILE}\\GIT\\DocumentacionClientes\\Itera\\AWS\\SSH\\')
   }
+  triggers {
+    pollSCM('* * * * *')
+  }
   stages{
     stage('Build'){
       steps{
@@ -23,6 +26,20 @@ pipeline{
         success {
           echo 'Now Archiving...'
           archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
+        }
+      }
+    }
+    stage ('Deployments'){
+      parallel{
+        stage ('Deploy to Staging'){
+          steps {
+            bat 'cp -f **/target/*.war C:\\apache-tomcat-9.0.8-qa\\webapps'
+          }
+        }
+        stage ('Deploy to Production'){
+          steps {
+            bat 'pscp -i ${params.ssh_key_folder}tomcat-PoC.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps'
+          }
         }
       }
     }
