@@ -29,21 +29,21 @@ pipeline{
         }
       }
     }
-    stage('Copy artifact to workfolder'){
+    /*stage('Copy artifact to workfolder'){
       steps{
         copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace(), target: 'C:\\deployWars'
       }
-    }
+    }*/
     stage ('Deployments'){
       parallel{
         stage ('Deploy to Staging'){
           steps {
-            bat 'copy -f *.war C:\\apache-tomcat-9.0.8-qa\\webapps'
+            bat 'copy -f webapp\\target\\webapp.war C:\\apache-tomcat-9.0.8-qa\\webapps'
           }
         }
         stage ('Deploy to Production'){
           steps {
-            bat 'pscp -i ${params.ssh_key_folder}tomcat-PoC.pem *.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps'
+            bat 'pscp -i ${params.ssh_key_folder}tomcat-PoC.pem webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps'
           }
         }
       }
