@@ -38,12 +38,12 @@ pipeline{
       parallel{
         stage ('Deploy to Staging'){
           steps {
-            bat 'copy /Y webapp\\target\\webapp.war C:\\apache-tomcat-9.0.8-qa\\webapps'
+            bat "copy /Y **\\target\\*.war C:\\apache-tomcat-9.0.8-qa\\webapps"
           }
         }
         stage ('Deploy to Production'){
           steps {
-            bat 'pscp -i ${params.ssh_key_folder}tomcat-PoC.pem webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps'
+            bat "pscp -i ${params.ssh_key_folder}tomcat-PoC.pem **\\target\\*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
           }
         }
       }
