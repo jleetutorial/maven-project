@@ -31,7 +31,7 @@ pipeline {
                 timeout(time:5, unit:'DAYS') {
                     input message: 'Approve Prod Deployment?'
                 }
-                build job: 'deploy-to-production'
+                build job: '${params.tomcat_prod}'
             }
             post {
                 success {
