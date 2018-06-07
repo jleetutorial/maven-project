@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Deploy to Production') {
             steps {
-                build job: ${params.tomcat_prod}
+                build job: "${params.tomcat_prod}"
             }
             post {
                 success {
