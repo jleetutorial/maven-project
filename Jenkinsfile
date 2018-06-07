@@ -1,9 +1,14 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'localMaven'
+    parameters {
+        string(name:'tomcat_prod', defaultValue: '35.197.215.88:8080', description: 'Production Server')
     }
+
+    triggers {
+        pollSCM('* * * * *')
+    }
+
 
     stages{
         stage('Build'){
@@ -17,16 +22,16 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging') {
+        stage ('Deploy to Production') {
             steps {
                 timeout(time:5, unit:'DAYS') {
-                    input message: 'Approve Stage Deployment?'
+                    input message: 'Approve Prod Deployment?'
                 }
-                build job: 'deploy-to-staging'
+                build job: 'deploy-to-production'
             }
             post {
                 success {
-                    echo 'Code to deploy to Stage.'
+                    echo 'Code to deploy to Prod.'
                 }
                 failure {
                     echo 'Deployment failed.'
