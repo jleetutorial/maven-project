@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        string(name:'tomcat_prod', defaultValue: '35.197.215.88', description: 'Production Server')
+        string(name:'tomcat_prod', defaultValue: '35.197.215.88:8080', description: 'Production Server')
     }
 
     triggers {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Deploy to Production') {
             steps {
-                build job: "${params.tomcat_prod}"
+                build job: "${params.tomcat_prod}:/var/lib/tomcat7/webapps"
             }
             post {
                 success {
