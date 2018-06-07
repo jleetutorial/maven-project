@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Deploy to Production') {
             steps {
-                sh "cp /var/jenkins_home/jobs/FullyAutomated/workspace/**/target/*.war ${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                sh "scp -i /var/jenkins_home/jobs/FullyAutomated/workspace/**/target/*.war root@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
             }
             post {
                 success {
