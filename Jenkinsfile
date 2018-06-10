@@ -22,10 +22,7 @@ pipeline {
         }
         stage ('deploy-to-staging'){
             steps {
-                sshagent(['293b5e86-10a3-4777-b976-039efa9f955c']) {
-                    sh "scp /var/jenkins_home/jobs/package/workspace/**/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
-
-                }
+                    sh "scp /var/jenkins_home/jobs/package/workspace/**/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat8/webapp
             }
         }
     }
