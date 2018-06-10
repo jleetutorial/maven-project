@@ -1,21 +1,10 @@
 pipeline {
     agent any
-
     tools {
         maven 'localMaven'
     }
-
-    parameters {
-        string(name:'tomcat_prod', defaultValue: '35.197.215.88:8080', description: 'Production Server')
-    }
-
-    triggers {
-        pollSCM('* * * * *')
-    }
-
-
-    stages{
-        stage('Build'){
+    stages {
+        stage ('Build'){
             steps {
                 sh 'mvn clean package'
             }
@@ -26,19 +15,21 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Production') {
-            steps {
-                sh "scp -i /var/jenkins_home/jobs/FullyAutomated/workspace/**/target/*.war root@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-            }
-            post {
-                success {
-                    echo 'Code to deploy to Prod.'
-                }
-                failure {
-                    echo 'Deployment failed.'
-                }
-            }
-
-        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
