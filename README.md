@@ -1,6 +1,6 @@
 # maven-project
 Source code for James Lee's Jenkins course.
 
-Check out the full list of DevOps and Big Data courses that James and Tao teach.
+Check out our Latest DevOps PDF book.
 
-https://www.level-up.one/courses/
+https://www.level-up.one/devops-pdf-book
