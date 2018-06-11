@@ -4,9 +4,6 @@ pipeline {
         maven 'localMaven'
     }
 
-    parameters {
-        string(name: 'tomcat_dev', defaultValue: '35.234.145.143', description: 'Staging server')
-    }
     stages {
         stage ('Build'){
             steps {
