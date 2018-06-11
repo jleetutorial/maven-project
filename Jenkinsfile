@@ -22,7 +22,7 @@ pipeline {
         }
         stage ('deploy-to-staging'){
             steps {
-                    sh "scp /var/jenkins_home/jobs/package/workspace/**/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat8/webapp"
+                build job: 'deploy-to-staging'
             }
         }
     }
