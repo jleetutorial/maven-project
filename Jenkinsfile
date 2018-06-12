@@ -1,27 +1,12 @@
 pipeline {
-    agent any
-    tools {
-        maven 'localMaven'
-    }
-
+    agent any 
     stages {
-        stage ('Build'){
+        stage('Stage 1') {
             steps {
-                sh 'mvn clean package'
+                echo 'Hello World'
             }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                   archiveArtifacts '**/*.war'
+        }
 
-                }
-            }
-        }
-        stage ('deploy-to-staging'){
-            steps {
-                build job: 'deploy-to-staging'
-            }
-        }
     }
 }
 
