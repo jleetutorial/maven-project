@@ -20,7 +20,7 @@ pipeline {
         stage ('Deployment Started'){
             steps {
                   echo 'Deployment starting'
-                  build job:'Maven Project/Deployment-to-tomcat'
+                  build job:'JenkinsFile/Deployment-To-Staging'
                   echo 'Deployment Completed'
             }
         }
