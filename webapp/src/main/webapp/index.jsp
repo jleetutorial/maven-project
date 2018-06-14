@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body bgcolor="red">
+<body bgcolor="orange">
 
 <h1>Hello User!</h1>
 <p><a href="https://www.google.com">Visit Google!</a></p>
