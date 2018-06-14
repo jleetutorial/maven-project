@@ -28,12 +28,12 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps{
-                        sh "scp -i /home/ubuntu/key.pem **/target/*.war ubuntu@${parms.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
                     }
                 }
             stage ("Deploy yo production"){
                 steps{
-                    sh "scp -i /home/ubuntu/key.pem **/target/*.war ubuntu@${parms.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
                     }
                 }
 
