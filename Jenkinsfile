@@ -34,9 +34,10 @@ pipeline {
             stage ("Deploy yo production"){
                 steps{
                     sh "scp -i /home/ubuntu/key.pem **/target/*.war ubuntu@${parms.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    }
                 }
+
             }
-        
         }
-    }
-}    
+    }    
+}
