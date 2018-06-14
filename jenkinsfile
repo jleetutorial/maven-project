@@ -7,15 +7,19 @@ pipeline {
              }        
         post {
             success {
-                    echo 'Now Archiving....'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    echo 'Build Success....'                  
                 }    
             }
         }
-        stage('Deploying'){
+        stage('Archiving'){
             steps {
-                echo 'deploying started'
+                  archiveArtifacts artifacts: '**/target/*.war'
+                  echo 'Archiving Completed '
             }
         }
+        stage('Deployment Started')
+            steps {
+                  echo 'Deployment starting'
+            }
     }
 }
