@@ -17,9 +17,13 @@ pipeline {
                   echo 'Archiving Completed '
             }
         }
-        stage('Deployment Started')
+        stage ('Deployment Started'){
             steps {
                   echo 'Deployment starting'
             }
+        }
     }
 }
+
+
+        
