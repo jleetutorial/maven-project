@@ -28,12 +28,12 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps{
-                        sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
+                        sh "sudo cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
                     }
                 }
             stage ("Deploy yo production"){
                 steps{
-                    sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
+                    sh "sudo cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
                     }
                 }
 
