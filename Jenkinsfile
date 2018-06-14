@@ -1,10 +1,10 @@
 pipeline {
     agent any
     parameters {
-        string(name:'tomcat_dev',defaultvalue:'34.201.111.1',decription:'staging server')
-        string(name:'tomcat_prod',defaultvalue:'34.201.111.1',decription:'production server')
+        string(name:'tomcat_dev',defaultValue:'34.201.111.1',description:'staging server')
+        string(name:'tomcat_prod',defaultValue:'34.201.111.1',description:'production server')
     }
-    trigger {
+    triggers {
         pollSCM ('* * * * *')
     }
     stages{
