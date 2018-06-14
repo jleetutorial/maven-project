@@ -17,12 +17,28 @@ pipeline {
                   echo 'Archiving Completed '
             }
         }
-        stage ('Deployment Started'){
+        stage ('Deploy to Staging'){
             steps {
                   echo 'Deployment starting'
                   build job:'JenkinsFile/Deployment-To-Staging'
                   echo 'Deployment Completed'
             }
+        }
+        stage('Deploy to Production'){
+            steps {
+                timeout(time:5, unit: 'DAYS'){
+                    input message: 'Approve Production Deployment'
+                }
+                build job:'JenkinsFile/Deployment-To-Staging'
+            }
+        post {
+            success{
+                echo'Code deployed to production successfully'                
+            }
+            failure{
+                echo'Deployment failed'
+            }
+        }
         }
     }
 }
