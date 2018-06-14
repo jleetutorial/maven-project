@@ -12,8 +12,10 @@ pipeline {
                 }    
             }
         }
+        stage('Deploying'){
+            steps {
+                echo 'deploying started'
+            }
+        }
     }
 }
-
-
-        
