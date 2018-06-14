@@ -4,18 +4,14 @@ pipeline {
         stage ('Build'){
             steps {
                 sh 'mvn clean package'
-             }              
+             }        
         post {
-            success {                
+            success {
                     echo 'Now Archiving....'
-                }
-        }       
-        stage ('Archiving'){
-                steps{
                     archiveArtifacts artifacts: '**/target/*.war'
-                }          
-            }    
-        }               
+                }    
+            }
+        }
     }
 }
 
