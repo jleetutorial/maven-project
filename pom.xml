@@ -163,6 +163,12 @@
   </build>
 
   <dependencyManagement>
+           
+     <snapshotrepository>
+          <id>deployment</id>
+          <name>Internal Snapshot Release</name>
+          <url>http://54.236.108.161:8081/repository/SAMPLE-SNAP/</url>
+     </snapshotrepository>
     <dependencies>
       <dependency>
         <groupId>javax.servlet</groupId>
