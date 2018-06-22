@@ -1,6 +1,10 @@
-pipeline {    
-  agent any
-   triggers {
+pipeline {
+    agent any
+    parameters {
+        string(name:'tomcat_dev',defaultValue:'34.201.111.1',description:'staging server')
+        string(name:'tomcat_prod',defaultValue:'34.201.111.1',description:'production server')
+    }
+    triggers {
         pollSCM ('* * * * *')
     }
     stages{
@@ -20,31 +24,20 @@ pipeline {
                   echo 'Archiving Completed '
             }
         }
-        stage ('Deploy to Staging'){
-            steps {
-                  echo 'Deployment starting'
-                  build job:'JenkinsFile/Deployment-To-Staging'
-                  echo 'Deployment Completed'
-            }
-        }
-        stage('Deploy to Production'){
-            steps {
-                timeout(time:5, unit: 'DAYS'){
-                    input message: 'Approve Production Deployment'
+        stage ('Deployments'){
+            parallel{
+                stage ('Deploy to Staging'){
+                    steps{
+                        sh "sudo cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
+                    }
                 }
-                build job:'JenkinsFile/Deployment-To-Staging'
-            }
-        post {
-            success{
-                echo'Code deployed to production successfully'                
-            }
-            failure{
-                echo'Deployment failed'
+            stage ("Deploy yo production"){
+                steps{
+                    sh "sudo cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war /var/lib/tomcat7/webapps"
+                    }
+                }
+
             }
         }
-        }
-    }
+    }    
 }
-
-
-        
