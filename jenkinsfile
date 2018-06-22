@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy to Production'){
             steps {
-                timeout(time:5, unit: 'DAYS'){
+                timeout(time:1, unit: 'MIN'){
                     input message: 'Approve Production Deployment'
                 }
                 build job:'JenkinsFile/Deployment-To-Staging'
