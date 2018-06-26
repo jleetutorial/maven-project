@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body bgcolor="#2E8B57">
+<body bgcolor="pink">
 
 <h1>Hello AWS Class</h1>
 <p><a href="https://www.google.com">Visit Google!</a></p>
