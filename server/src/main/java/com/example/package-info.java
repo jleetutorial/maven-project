@@ -1,4 +1,5 @@
-/*
-* This is a package name.
+/**
+* @param This is a package name.
+* @return greeting string
 */
 package com.example;
