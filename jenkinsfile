@@ -1,0 +1,47 @@
+pipeline {    
+  agent any
+   triggers {
+        pollSCM ('* * * * *')
+    }
+    stages{
+        stage ('Build'){
+            steps {
+                sh 'mvn clean package'
+             }        
+        post {
+            success {
+                    echo 'Build Success....'                  
+                }    
+            }
+        }
+        stage('Archiving'){
+            steps {
+                  archiveArtifacts artifacts: '**/target/*.war'
+                  echo 'Archiving Completed '
+            }
+        }
+        stage ('Deploy to Staging'){
+            steps {
+                  echo 'Deployment starting'
+                  build job:'JenkinsFile/Deployment-To-Staging'
+                  echo 'Deployment Completed'
+            }
+        }
+        stage('Deploy to Production'){
+            steps {
+                timeout(time:1, unit: 'MINUTES'){
+                    input message: 'Approve Production Deployment'
+                }
+                build job:'JenkinsFile/Deployment-To-Staging'
+            }
+        post {
+            success{
+                echo'Code deployed to production successfully'                
+            }
+            failure{
+                echo'Deployment failed'
+            }
+        }
+        }
+    }
+}
