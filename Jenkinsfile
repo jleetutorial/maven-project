@@ -43,7 +43,7 @@ pipeline {
                             echo 'Deployment to Production success'
                         }
 
-                        error{
+                        failure{
                             echo 'Deployment to Production failed'
                         }
                     }
