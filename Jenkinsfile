@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
             post {
                 success {
@@ -35,7 +35,7 @@ pipeline {
                 stage('Deploy to staging'){
                     steps{
                         //build job: 'Deploy-to-Staging' /home/ktummalagunta/jenkins
-                        sh "scp -i /home/ktummalagunta/jenkins/MyPuttyKey.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        bat "winscp -i /home/ktummalagunta/jenkins/MyPuttyKey.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
                     }
 
                     post {
