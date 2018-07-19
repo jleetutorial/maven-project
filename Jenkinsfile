@@ -2,8 +2,17 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'localMaven'
+    // tools {
+    //     maven 'localMaven'
+    // }
+
+    parameters{
+        string(name:'tomcat_dev', defaultValue:'34.194.29.98', description:'Staging SERVER')
+        //String(name:'tomcat_PROD', defaultValue:'http://localhost:9090/',description:'Production SERVER')
+    }
+
+    triggers{
+        pollSCM('* * * * *')
     }
 
     stages{
@@ -20,28 +29,46 @@ pipeline {
             }
         }
 
-        stage('Deploy to staging'){
-        	steps{
-        		build job: 'Deploy-to-Staging'
-        	}
-        }
+        stage('Deployments'){
+            parallel {
 
-        stage('Deploy to Production'){
-        	steps{
-        		timeout(time:5, unit:'DAYS'){
-        			input message : 'Approve for the production Deployment'
-        		}
+                stage('Deploy to staging'){
+                    steps{
+                        //build job: 'Deploy-to-Staging' /home/ktummalagunta/jenkins
+                        sh "scp -i /home/ktummalagunta/jenkins/MyPuttyKey.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                    }
 
-        		build job: 'Deploy-to-Prod'
-        	}
-        	post {
-                success {
-                    echo 'Deployment to Production success'
+                    post {
+                        success {
+                            echo 'Deployment to Production success'
+                        }
+
+                        error{
+                            echo 'Deployment to Production failed'
+                        }
+                    }
                 }
 
-                error{
-					echo 'Deployment to Production failed'
-                }
+                    // stage('Deploy to Production'){
+                    //     steps{
+                    //         // timeout(time:5, unit:'DAYS'){
+                    //         //     input message : 'Approve for the production Deployment?'
+                    //         // }
+
+                    //         // build job: 'Deploy-to-Prod'
+
+                    //         sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    //     }
+                    //     post {
+                    //         success {
+                    //             echo 'Deployment to Production success'
+                    //         }
+
+                    //         error{
+                    //             echo 'Deployment to Production failed'
+                    //         }
+                    //     }
+                    // }
             }
         }
     
