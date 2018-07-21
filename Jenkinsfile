@@ -35,7 +35,7 @@ pipeline {
                 stage('Deploy to Develop'){
                     steps{
                         //build job: 'Deploy-to-Staging' /home/ktummalagunta/jenkins
-                        bat "winscp -i C:/Users/ktummalagunta/Downloads/MyPuttyKey.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        bat "scp -i C:/Users/ktummalagunta/Downloads/MyPuttyKey.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
                     }
 
                     post {
@@ -70,7 +70,6 @@ pipeline {
                     //     }
                     // }
             }
-        }
-    
+        }    
     }
 }
