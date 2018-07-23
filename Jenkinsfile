@@ -31,7 +31,7 @@ pipeline {
 
             steps {
 
-                build job: 'Deploy-to-staging'
+                build job: 'deploy-to-staging'
 
             }
 
@@ -51,7 +51,7 @@ pipeline {
 
 
 
-                build job: 'Deploy-to-Prod'
+                build job: 'deploy-to-prod'
 
             }
 
