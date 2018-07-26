@@ -7,8 +7,8 @@ pipeline {
     }
 
     parameters { 
-         string(name: 'tomcat_dev', defaultValue: 'http://localhost:8090', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: 'http://localhost:9090', description: 'Production Server')
+         string(name: 'tomcat_dev', defaultValue: 'C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-staging\webapps', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-prod\webapps', description: 'Production Server')
     } 
  
     triggers {
@@ -32,13 +32,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-			 bat "xcopy /s/y ""C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war"" ""C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-staging\webapps"""
+			 bat "xcopy /s/y **/target/*.war %tomcat_dev%"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-			bat "xcopy /s/y ""C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war"" ""C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-prod"""
+			bat "xcopy /s/y **/target/*.war %tomcat_prod%"
                     }
                 }
             }
