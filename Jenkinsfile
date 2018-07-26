@@ -32,13 +32,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-			 bat "xcopy /s/y **/target/*.war %tomcat_dev%/var/lib/tomcat7/webapps"
+			 bat "xcopy /s/y **/target/*.war %tomcat_dev%:/var/lib/tomcat7/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-			bat "xcopy /s/y **/target/*.war %tomcat_prod%/var/lib/tomcat7/webapps"
+			bat "xcopy /s/y **/target/*.war %tomcat_prod%:/var/lib/tomcat7/webapps"
                     }
                 }
             }
