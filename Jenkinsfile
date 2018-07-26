@@ -32,13 +32,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-			 bat "xcopy /s C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-staging\webapps"
+			 bat "xcopy /s/y ""C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war"" ""C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-staging\webapps"""
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-			bat "xcopy /s C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-prod"
+			bat "xcopy /s/y ""C:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war"" ""C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-prod"""
                     }
                 }
             }
