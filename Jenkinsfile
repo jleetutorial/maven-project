@@ -32,13 +32,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-			 bat "copy **/target/*.war C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-staging\webapps"
+			 bat "copy **/target/*.war C:/Users/Xadmin/Documents/apache-tomcat-8.5.32-staging/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-			bat "copy **/target/*.war C:\Users\Xadmin\Documents\apache-tomcat-8.5.32-prod\webapps"
+			bat "copy **/target/*.war C:/Users/Xadmin/Documents/apache-tomcat-8.5.32-prod/webapps"
                     }
                 }
             }
