@@ -9,6 +9,7 @@ public class Greeter {
    * This is a constructor.
    */
   public Greeter() {
+    private String deep;
 
   }
 
@@ -16,6 +17,6 @@ public class Greeter {
   public String greet(String someone) {
     
     return String.format("Hello, %s!", someone);
-    private String deep;
+    
   }
 }
