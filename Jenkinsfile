@@ -32,14 +32,12 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                         bat "net use http://localhost:8090 tomcat /USER:tomcat"
 			 bat "copy **/target/*.war http://localhost:8090/var/lib/tomcat7/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "net use http://localhost:9090 tomcat /USER:tomcat"
 			bat "copy **/target/*.war http://localhost:9090/var/lib/tomcat7/webapps"
                     }
                 }
