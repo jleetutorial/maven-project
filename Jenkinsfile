@@ -7,7 +7,7 @@ pipeline {
         stage('Build'){
             steps {
                 echo 'Now Build...'
-                sh 'mvn clean validate'
+                sh 'mvn clean package'
             }
             post {
                 success {
