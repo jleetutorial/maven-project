@@ -1,6 +1,3 @@
-# maven-project
-Source code for James Lee's Jenkins course.
-
-Check out our Latest DevOps PDF book.
-
-https://www.level-up.one/devops-pdf-book
+c'est un projet maven de test avec CI/CD Jenkins
+c'est un projet maven de test avec CI/CD Jenkins
+-------------------------------------------------
