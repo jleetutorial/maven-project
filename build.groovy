@@ -2,7 +2,7 @@ node {
   git url: 'https://github.com/prdur1/maven-project.git'
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
-  stage('Example')
+  stage('File Loading')
   {
      echo 'I am from Example'
     // Load the file 'externalMethod.groovy' from the current directory, into a variable called "externalMethod".
@@ -16,7 +16,7 @@ node {
     externalCall("Steve")
     
    }
-     stage ('QA')
+  stage ('QA')
   {
     parallel(longerTests: {
               echo' from longer test'
