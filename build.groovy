@@ -43,6 +43,12 @@ node {
      } 
   stage('Enviroment')
   {
+    FOO = "BAR"
+    BUILD_NUM_ENV = currentBuild.getNumber()
+    ANOTHER_ENV = "${currentBuild.getNumber()}"
+    INHERITED_ENV = "\${BUILD_NUM_ENV} is inherited"
+    ACME_FUNC = readMavenPom().getArtifactId()
+    
      sh 'echo "FOO is $FOO"'
         // returns 'FOO is BAR'
 
