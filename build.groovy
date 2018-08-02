@@ -16,12 +16,14 @@ node {
     externalCall("Steve")
     
    }
-     stage 'QA'
+     stage ('QA')
+  {
     parallel(longerTests: {
               echo' from longer test'
            }, quickerTests: {
           echo' from Quicker test'
            })
+  } 
  /*stage('buid')
   {
     echo 'Build'
