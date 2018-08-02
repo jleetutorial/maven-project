@@ -22,7 +22,7 @@ node {
           echo' from longer test'
         }
     }, quickerTests: {
-        runWithServer {   echo' from longer test'
+        runWithServer {   echo' from Quicker test'
         }
     })
  /*stage('buid')
