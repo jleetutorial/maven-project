@@ -24,7 +24,8 @@ node {
           echo' from Quicker test'
            })
   } 
-  stage('Build'){
+  stage '\u273F Verify 4'
+ /* stage('Build'){
             steps {
                 echo 'Now Build...'
                 sh 'mvn clean package'
@@ -36,7 +37,7 @@ node {
                     
                 }
             }
-        }
+        } */
   
  /*stage('buid')
   {
