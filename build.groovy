@@ -18,13 +18,10 @@ node {
    }
      stage 'QA'
     parallel(longerTests: {
-        runWithServer {
-          echo' from longer test'
-        }
-    }, quickerTests: {
-        runWithServer {   echo' from Quicker test'
-        }
-    })
+              echo' from longer test'
+           }, quickerTests: {
+          echo' from Quicker test'
+           })
  /*stage('buid')
   {
     echo 'Build'
