@@ -18,12 +18,11 @@ node {
    }
      stage 'QA'
     parallel(longerTests: {
-        runWithServer {url ->
-            sh "mvn -f sometests/pom.xml test -Durl=${url} -Dduration=30"
+        runWithServer {
+          echo' from longer test'
         }
     }, quickerTests: {
-        runWithServer {url ->
-            sh "mvn -f sometests/pom.xml test -Durl=${url} -Dduration=20"
+        runWithServer {   echo' from longer test'
         }
     })
  /*stage('buid')
