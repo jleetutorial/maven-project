@@ -23,25 +23,16 @@ node {
            }, quickerTests: {
           echo' from Quicker test'
            })
-    timeout(time: 5, unit: "SECONDS") {
-          retry(5) {
-            echo "hello"}
-    }
+  
   } 
  
- /* stage('Build'){
-            steps {
-                echo 'Now Build...'
-                sh 'mvn clean package'
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
-                    
-                }
-            }
-        } */
+  stage('Build'){
+            timeout(time: 5, unit: "SECONDS") {
+          retry(5) {
+            echo "hello"
+          }
+        }
+     } 
   
  /*stage('buid')
   {
