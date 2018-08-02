@@ -5,7 +5,10 @@ node {
   stage('Example')
   {
      echo 'I Example'
-  }
+    def externalMethod = load("externalMethod.groovy")
+    // Call the method we defined in externalMethod.
+    externalMethod.lookAtThis("Steve")
+   }
   stage('buid')
   {
     echo 'Build'
