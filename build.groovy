@@ -25,7 +25,8 @@ node {
            })
     timeout(time: 5, unit: "SECONDS") {
           retry(5) {
-            echo "hello"
+            echo "hello"}
+    }
   } 
  
  /* stage('Build'){
