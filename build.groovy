@@ -16,9 +16,19 @@ node {
     externalCall("Steve")
     
    }
-  stage('buid')
+     stage 'QA'
+    parallel(longerTests: {
+        runWithServer {url ->
+            sh "mvn -f sometests/pom.xml test -Durl=${url} -Dduration=30"
+        }
+    }, quickerTests: {
+        runWithServer {url ->
+            sh "mvn -f sometests/pom.xml test -Durl=${url} -Dduration=20"
+        }
+    })
+ /*stage('buid')
   {
     echo 'Build'
   sh 'mvn clean package'
-  }
+  } */
 }
