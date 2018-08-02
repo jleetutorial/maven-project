@@ -18,6 +18,13 @@ pipeline {
                 }
             }
         }
+        stage('Operation without SCM'){
+           steps{
+               mail (to: 'pradeep.duraimarudhakutty@wipro.com',
+               subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
+               body: "Please go to ${env.BUILD_URL}.");
+                }
+           }
         stage ('Deploy to Staging'){
             steps {
                 build job: 'Deploy to staging'
