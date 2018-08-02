@@ -9,7 +9,7 @@ node {
    def externalMethod = load("externalMethod.groovy")
 
     // Call the method we defined in externalMethod.
-  //  externalMethod.lookAtThis("Steve")
+   externalMethod.lookAtThis("Steve")
    }
   stage('buid')
   {
