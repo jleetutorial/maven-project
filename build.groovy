@@ -6,10 +6,10 @@ node {
   {
      echo 'I Example'
      // Now load 'externalCall.groovy'.
-    def externalCall = load("externalCall.groovy")
+   // def externalCall = load("externalCall.groovy")
 
     // We can just run it with "externalCall(...)" since it has a call method.
-    externalCall("Steve")
+    //externalCall("Steve")
    }
   stage('buid')
   {
