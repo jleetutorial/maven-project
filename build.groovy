@@ -2,14 +2,7 @@ node {
   git url: 'https://github.com/prdur1/maven-project.git'
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
-  environment {
-    FOO = "BAR"
-    BUILD_NUM_ENV = currentBuild.getNumber()
-    ANOTHER_ENV = "${currentBuild.getNumber()}"
-    INHERITED_ENV = "\${BUILD_NUM_ENV} is inherited"
-    ACME_FUNC = readMavenPom().getArtifactId()
-  }
-  
+
   stage('File Loading')
   {
      echo 'I am from Example'
