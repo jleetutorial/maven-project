@@ -1,3 +1,9 @@
+import groovy.json.JsonSlurper
+import groovy.util.XmlSlurper
+import jenkins.*
+import jenkins.model.*
+import hudson.model.*
+
 node {
   git url: 'https://github.com/prdur1/maven-project.git'
   def mvnHome = tool 'localMaven'
