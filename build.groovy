@@ -40,7 +40,7 @@ node {
           }
         }
      } 
-   */  
+   
   stage('Enviroment')
   {
     FOO = "BAR"
@@ -64,12 +64,13 @@ node {
 
   //      sh 'echo "ACME_FUNC is $ACME_FUNC"'
         // returns 'ACME_FUNC is spring-petclinic' or the name of the artifact in the pom.xml
-  }
+  }  */ 
   
  stage('buid')
   {
     echo 'Build'
     sh 'mvn clean package'
+    input 'Ready to go?'
     step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   } 
