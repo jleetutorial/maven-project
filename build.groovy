@@ -6,14 +6,10 @@ import hudson.model.*
 
 node {
   git url: 'https://github.com/prdur1/maven-project.git'
-   def v = version(readFile('pom.xml'))
-  if (v) {
-    echo "Building version ${v}"
-  }
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
 
-  stage('File Loading')
+/*  stage('File Loading')
   {
      echo 'I am from Example'
     // Load the file 'externalMethod.groovy' from the current directory, into a variable called "externalMethod".
@@ -44,6 +40,7 @@ node {
           }
         }
      } 
+   */  
   stage('Enviroment')
   {
     FOO = "BAR"
@@ -69,9 +66,11 @@ node {
         // returns 'ACME_FUNC is spring-petclinic' or the name of the artifact in the pom.xml
   }
   
- /*stage('buid')
+ stage('buid')
   {
     echo 'Build'
-  sh 'mvn clean package'
-  } */
+    sh 'mvn clean package'
+    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+  } 
 }
