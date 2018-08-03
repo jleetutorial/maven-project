@@ -13,10 +13,7 @@ node {
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
   
-  def version() {
-  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-  matcher ? matcher[0][1] : null
-}
+
 
 /*  stage('File Loading')
   {
@@ -83,4 +80,8 @@ node {
     step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   } 
+ def version() {
+   def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+   matcher ? matcher[0][1] : null
+  }
 }
