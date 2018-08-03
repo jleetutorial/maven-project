@@ -89,7 +89,12 @@ node {
     step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   }
- 
+ stage ('Report')
+  {
+    step([$class: 'JUnitResultArchiver', testResults: 'gitlist-PHP/build/logs/junit.xml'])
+    step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', checkstyle: 'gitlist-PHP/build/logs/phpcs.xml'])
+    //step([$class: 'hudson.plugins.dry.DryPublisher', CopyPasteDetector: 'gitlist-PHP/build/logs/phpcpd.xml'])
+  }
  
 }
 def version() {
