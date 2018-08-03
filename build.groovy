@@ -10,14 +10,14 @@ node {
   if (v) {
     echo "Building version ${v}"
   }
-  def a = artifactId()
+/*  def a = artifactId()
   if (a) {
     echo "artifactId is ${a}"
   }
   else
   {
     echo "artifactId is not feteched : ${a}"
-  }
+  } */
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
   
@@ -95,7 +95,8 @@ node {
    matcher ? matcher[0][1] : null
   }
 
- def artifactId() {
+/* def artifactId() {
    def matcher = readFile('pom.xml') =~ '<artifactId>(.+)</artifactId>>'
    matcher ? matcher[0][1] : null
   }
+*/
