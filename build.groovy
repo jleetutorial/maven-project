@@ -23,7 +23,7 @@ node {
   
 
 
-/*  stage('File Loading')
+  stage('File Loading')
   {
      echo 'I am from Example'
     // Load the file 'externalMethod.groovy' from the current directory, into a variable called "externalMethod".
@@ -37,7 +37,7 @@ node {
     externalCall("Steve")
     
    }
-  stage ('QA')
+/*  stage ('QA')
   {
     parallel(longerTests: {
               echo' from longer test'
@@ -78,16 +78,9 @@ node {
 
   //      sh 'echo "ACME_FUNC is $ACME_FUNC"'
         // returns 'ACME_FUNC is spring-petclinic' or the name of the artifact in the pom.xml
-  }  */ 
+  }   
   
-/* stage('buid')
-  {
-    echo 'Build'
-    sh 'mvn clean package'
-    input 'Ready to go?'
-    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
-    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-  } */
+ */
 }
  def version() {
    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>>'
