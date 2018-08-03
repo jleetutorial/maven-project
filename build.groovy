@@ -6,6 +6,10 @@ import hudson.model.*
 
 node {
   git url: 'https://github.com/prdur1/maven-project.git'
+   def v = version(readFile('pom.xml'))
+  if (v) {
+    echo "Building version ${v}"
+  }
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
 
