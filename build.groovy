@@ -6,8 +6,17 @@ import hudson.model.*
 
 node {
   git url: 'https://github.com/prdur1/maven-project.git'
+  def v = version()
+  if (v) {
+    echo "Building version ${v}"
+  }
   def mvnHome = tool 'localMaven'
   env.PATH = "${mvnHome}/bin:${env.PATH}"
+  
+  def version() {
+  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+  matcher ? matcher[0][1] : null
+}
 
 /*  stage('File Loading')
   {
