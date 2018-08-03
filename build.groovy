@@ -88,6 +88,7 @@ node {
     input 'Ready to go?'
     step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+    step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml', unstableTotalAll:'0'])
   }
 
 }
