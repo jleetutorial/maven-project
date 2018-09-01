@@ -31,13 +31,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i /Users/oleksandrp/DevSpace/Udemy_Courses/aws/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat-stage}:/var/lib/tomcat7/webapps"
+                        sh "scp -i /Users/oleksandrp/DevSpace/Udemy_Courses/aws/tomcat-demo.pem **/target/*.war ec2-user@"${params.tomcat-stage}":/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i /Users/oleksandrp/DevSpace/Udemy_Courses/aws/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat-prod}:/var/lib/tomcat7/webapps"
+                        sh "scp -i /Users/oleksandrp/DevSpace/Udemy_Courses/aws/tomcat-demo.pem **/target/*.war ec2-user@"${params.tomcat-prod}":/var/lib/tomcat7/webapps"
                     }
                 }
             }
