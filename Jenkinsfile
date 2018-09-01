@@ -1,8 +1,9 @@
 pipeline {
-    agent {
-      label main
-    }
+    agent none
     stages{
+        agent {
+          label main
+        }
         stage('Build'){
             steps {
                 sh 'mvn clean package'
