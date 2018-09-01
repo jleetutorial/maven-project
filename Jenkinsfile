@@ -1,10 +1,10 @@
 pipeline {
     agent none
     stages{
-        agent {
-          label main
-        }
         stage('Build'){
+            agent {
+                label main
+            }
             steps {
                 sh 'mvn clean package'
             }
@@ -16,12 +16,18 @@ pipeline {
             }
         }
         stage ('Deploy to Staging'){
+            agent {
+                label main
+            }
             steps {
                 build job: 'Deploy-to-staging'
             }
         }
 
         stage ('Deploy to Production'){
+            agent {
+                label main
+            }
             steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
