@@ -8,8 +8,6 @@ pipeline {
             post {
                 success {
                     echo 'Now Archiving...'
-                    sh 'ls -la'
-                    archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
