@@ -20,10 +20,25 @@ pipeline {
                     build job: 'jenkinsfile-deploy-to-staging'
             }
         }
-        stage('Deploy') {
+        stage('Deploy-to-prod') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying to prod....'
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Approve Production Deployment'
+                }
+
+                build job: 'jenkinsfile-deploy-to-prod'
+            }
+            post {
+                success {
+                    echo 'Code Deployed to prod'
+                }
+
+                failure {
+                    echo 'Deployment Failed'
+                }
             }
         }
+    
     }
 }
