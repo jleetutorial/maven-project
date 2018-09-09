@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy-to-staging') {
             steps {
                 echo 'deploying to staging..'
-                    Build job: 'jenkinsfile-deploy-to-staging'
+                    build job: 'jenkinsfile-deploy-to-staging'
             }
         }
         stage('Deploy') {
