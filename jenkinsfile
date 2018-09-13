@@ -1,44 +1,40 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                bat 'mvn clean package'
-            }
-            post {
-                success {
-                        echo 'Now Archiving...'
-                        archiveArtifacts artifacts: '**/*.war'
-                }
-            }
-        }
-        stage('Deploy-to-staging') {
-            steps {
-                echo 'deploying to staging..'
-                    build job: 'jenkinsfile-deploy-to-staging'
-            }
-        }
-        stage('Deploy-to-prod') {
-            steps {
-                echo 'Deploying to prod....'
-                timeout(time:5, unit:'DAYS'){
-                    input message:'Approve Production Deployment'
-                }
-
-                build job: 'jenkinsfile-deploy-to-prod'
-            }
-            post {
-                success {
-                    echo 'Code Deployed to prod'
-                }
-
-                failure {
-                    echo 'Deployment Failed'
-                }
-            }
-        }
-    
+    parameters {
+        string(name: 'tomcat_dev',defaultValue: '18.188.87.202',description: 'Staging Server')
+        string(name: 'tomcat_prod'defaultValue: '13.58.64.255',description: 'Production Server')
     }
-}
+
+    triggers {
+        pollSCM('* * * * *')
+    }
+
+    stages{
+        stage('Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
+        }
+        stage ('Deployments'){
+            parallel{
+                stage('Deploy to statging'){
+                    steps {
+                        sh "scp -i C:/Users/hs30946/Desktop/Executables/tomcat-mc3.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                }
+                stage('Deploy to production'){
+                    steps {
+                        sh "scp -i C:/Users/hs30946/Desktop/Executables/tomcat-mc3.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    }
+                }
+            }
+        }
+    }
+
+    
