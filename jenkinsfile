@@ -20,6 +20,9 @@ stages{
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
+                failure {
+                    echo 'Build step failed'
+                }
             }
         }
 
