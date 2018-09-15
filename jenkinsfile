@@ -30,13 +30,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp **/*.war http://localhost:8090/"
+                        sh "scp -i C:/Users/hs30946/Desktop/Executables/tomcat-mc3.pem **/*.war ec2-user@${parameters.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "cp **/*.war http://localhost:9090/"
+                        sh "scp -i C:/Users/hs30946/Desktop/Executables/tomcat-mc3.pem **/*.war ec2-user@${parameters.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
