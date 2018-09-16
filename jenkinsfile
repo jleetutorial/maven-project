@@ -30,7 +30,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp scp:ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps privatekey="c:/ec2key/tomcat-mc3.ppk" **/target/*.war"
+                        bat "winscp scp:ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps /privatekey="c:/ec2key/tomcat-mc3.ppk" /**/target/*.war"
                     }
                 }
 
