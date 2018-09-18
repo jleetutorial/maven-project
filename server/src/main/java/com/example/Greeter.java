@@ -19,9 +19,6 @@ public class Greeter {
    * @return string formated string
    */
   public final String greet(final String someone) {
-    if ((list == null) && (list.size() == 0)) {     
-      return null;
-    }
     String aString = "bob";
     b.replace('b', 'p');
     if(b.equals("pop")){
