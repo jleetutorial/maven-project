@@ -22,6 +22,11 @@ public class Greeter {
     if ((list == null) && (list.size() == 0)) {     
       return null;
     }
+    String aString = "bob";
+    b.replace('b', 'p');
+    if(b.equals("pop")){
+      return null;
+    }
     return String.format("Hello, %s!", someone);
   }
 
