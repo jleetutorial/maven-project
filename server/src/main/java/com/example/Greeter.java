@@ -20,6 +20,7 @@ public class Greeter {
    */
   public final String greet(final String someone) {
     String aString = "bob";
+    String b;
     b.replace('b', 'p');
     if(b.equals("pop")){
       return null;
