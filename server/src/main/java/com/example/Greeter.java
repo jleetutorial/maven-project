@@ -17,8 +17,8 @@ public class Greeter {
    * @return string formated string
    */
   public final String greet(final String someone) {
-    if ((!value.equals(null)) && (!value.equals(""))) {      
-      Map spaces = (Map) vm.get(SpaceConstants.AVAILABLESPACEMAP);
+    if ((list == null) && (list.size() == 0)) {     
+      return null;
     }
     return String.format("Hello, %s!", someone);
   }
