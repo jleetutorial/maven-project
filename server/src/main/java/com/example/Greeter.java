@@ -12,6 +12,8 @@ public class Greeter {
 
   }
 
+  
+  
   /**
    * @param someone the string
    * @return string formated string
@@ -22,6 +24,13 @@ public class Greeter {
     }
     return String.format("Hello, %s!", someone);
   }
+
+
+
   
   
 }
+
+
+
+
