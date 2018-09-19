@@ -14,22 +14,24 @@ pipeline{
         }        
       }
     }
-    parallel{
-      stage('Probar') {
-        steps{
-          node('master'){
-            sh 'mvn checkstyle:checkstyle'
-            checkstyle defaultEncoding: '', failedTotalHigh: params.MAX_HIGH_WARNING, healthy: '', pattern: '', unHealthy: ''
-          }          
+    stage('Despliegues'){
+      parallel{
+        stage('Probar') {
+          steps{
+            node('master'){
+              sh 'mvn checkstyle:checkstyle'
+              checkstyle defaultEncoding: '', failedTotalHigh: params.MAX_HIGH_WARNING, healthy: '', pattern: '', unHealthy: ''
+            }          
+          }
         }
-      }
-      stage('Desplegar') {
-        steps{
-          node('Windows') {
-            copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
-          }          
+        stage('Desplegar') {
+          steps{
+            node('Windows') {
+              copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
+            }          
+          }
         }
-      }
+      }      
     }
   }
 }
