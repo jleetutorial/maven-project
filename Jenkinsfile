@@ -43,7 +43,7 @@ pipeline {
           }
           steps {
             node(label: 'Windows') {
-              copyArtifacts(filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: 'mvn-3', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME')
+              copyArtifacts(filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: 'mvn-3/master', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME')
             }
 
           }
