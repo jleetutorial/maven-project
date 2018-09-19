@@ -43,7 +43,7 @@ pipeline {
           }
           steps {
             node(label: 'Windows') {
-              copyArtifacts(filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME')
+              copyArtifacts(filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: 'mvn-3', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME')
             }
 
           }
@@ -52,7 +52,7 @@ pipeline {
     }
     stage('Confirm Deploy to Production') {
       steps {
-        input(message: 'Desplegar a producción?', ok: 'Aceptar')
+        input(message: 'Desplegar a producciÃ³n?', ok: 'Aceptar')
       }
     }
   }
