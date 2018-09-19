@@ -1,44 +1,27 @@
-pipeline{ 
-  agent any
-  tools {
-    maven 'maven'
+pipeline{
+  agent none
+  parameters{
+    string(defaultValue: '2', description: '', name: 'MAX_HIGH_WARNING', trim: true)
   }
+  copyArtifactPermission('pipelineAsCode')
   stages{
-    stage('Build'){
-      steps{
-        script {
-          if(isUnix()){
-            sh 'mvn clean package'
-          }else{
-            bat 'mvn clean package'
-          }
-        }
-      }
-      post {
-        success {
-          echo 'Now Archiving...'
-          archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
-        }
+    stage('Compilar'){
+      node('master') {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-pvaleror', url: 'https://github.com/pvaleror/maven-project.git']]])
+        sh 'mvn clean package'
+        archiveArtifacts artifacts: '**/*.war', onlyIfSuccessful: true
       }
     }
-    stage ('Deploy to Staging'){
-      steps {
-        build job: 'DeployArtifac'
-      }
-    }
-    stage ('Deploy to Production'){
-      steps{
-        timeout(time:5, unit:'MINUTES'){
-          input message:'Approve PRODUCTION Deployment?'
+    parallel{
+      stage('Probar') {
+        node('master'){
+          sh 'mvn checkstyle:checkstyle'
+          checkstyle defaultEncoding: '', failedTotalHigh: params.MAX_HIGH_WARNING, healthy: '', pattern: '', unHealthy: ''
         }
-        build job: 'DeployToProd'
       }
-      post {
-        success {
-          echo 'Code deployed to Production.'
-        }
-        failure {
-          echo ' Deployment failed.'
+      stage('Desplegar') {
+        node('Windows') {
+          copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
         }
       }
     }
