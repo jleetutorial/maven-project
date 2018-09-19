@@ -1,42 +1,62 @@
-pipeline{
+pipeline {
   agent none
-  parameters{
-    string(defaultValue: '2', description: '', name: 'MAX_HIGH_WARNING', trim: true)
-  }
-  stages{
-    stage('Compilar'){
-      steps{
-        node('master') {
+  stages {
+    stage('Compilar') {
+      agent {
+        node {
+          label 'master'
+        }
+
+      }
+      steps {
+        node(label: 'master') {
           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-pvaleror', url: 'https://github.com/pvaleror/maven-project.git']]])
           sh 'mvn clean package'
-          archiveArtifacts artifacts: '**/*.war', onlyIfSuccessful: true
-        }        
+          archiveArtifacts(artifacts: '**/*.war', onlyIfSuccessful: true)
+        }
+
       }
     }
-    stage('Despliegues'){
-      parallel{
+    stage('Despliegues') {
+      parallel {
         stage('Probar') {
-          steps{
-            node('master'){
+          agent {
+            node {
+              label 'Windows'
+            }
+
+          }
+          steps {
+            node(label: 'master') {
               sh 'mvn checkstyle:checkstyle'
-              checkstyle defaultEncoding: '', failedTotalHigh: params.MAX_HIGH_WARNING, healthy: '', pattern: '', unHealthy: ''
-            }          
+              checkstyle(failedTotalHigh: params.MAX_HIGH_WARNING)
+            }
+
           }
         }
         stage('Desplegar') {
-          steps{
-            node('Windows') {
-              copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
-            }          
+          agent {
+            node {
+              label 'master'
+            }
+
+          }
+          steps {
+            node(label: 'Windows') {
+              copyArtifacts(filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME')
+            }
+
           }
         }
-      }      
-    }
-    stage('Confirm Deploy to Production') {
-      agent none
-      steps {
-        input(message: 'Desplegar a producciÃ³n?', ok: "Aceptar")
       }
     }
+    stage('Confirm Deploy to Production') {
+      steps {
+        input(message: 'Desplegar a producción?', ok: 'Aceptar')
+      }
+    }
+  }
+  parameters {
+    string(defaultValue: '2', description: '', name: 'MAX_HIGH_WARNING', trim: true)
   }
 }
