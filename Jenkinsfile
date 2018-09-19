@@ -26,7 +26,7 @@ pipeline{
         stage('Desplegar') {
           steps{
             node('Windows') {
-              copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: '$JOB_NAME', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
+              copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, flatten: true, projectName: 'pi2', selector: specific('$BUILD_NUMBER'), target: '$TOMCAT_HOME'
             }          
           }
         }
