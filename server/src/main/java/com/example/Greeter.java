@@ -13,14 +13,13 @@ public class Greeter {
   }
 
   
-  
   /**
    * @param someone the string
    * @return string formated string
    */
   public final String greet(final String someone) {
     String aString = "bob";
-    String b=aString;
+    String b = aString;
     b.replace('b', 'p');
     if(b.equals("pop")){
       return null;
