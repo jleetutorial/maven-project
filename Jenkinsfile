@@ -3,7 +3,6 @@ pipeline{
   parameters{
     string(defaultValue: '2', description: '', name: 'MAX_HIGH_WARNING', trim: true)
   }
-  copyArtifactPermission('pipelineAsCode')
   stages{
     stage('Compilar'){
       steps{
