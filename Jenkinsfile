@@ -32,5 +32,11 @@ pipeline{
         }
       }      
     }
+    stage('Confirm Deploy to Production') {
+      agent none
+      steps {
+        input(message: 'Desplegar a producción?', ok: "Aceptar")
+      }
+    }
   }
 }
