@@ -12,7 +12,7 @@ public class Greeter {
 
   }
 
-  
+
   /**
    * @param someone the string
    * @return string formated string
@@ -21,7 +21,7 @@ public class Greeter {
     String aString = "bob";
     String b = aString;
     b.replace('b', 'p');
-    if(b.equals("pop")){
+    if (b.equals("pop")) {
       return null;
     }
     return String.format("Hello, %s!", someone);
@@ -29,7 +29,7 @@ public class Greeter {
 
 
 
-  
+
   
 }
 
