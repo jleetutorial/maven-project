@@ -4,7 +4,8 @@ pipeline{
         label 'master'
       }
     }
- properties([parameters([string(defaultValue: '3', description: '', name: 'MAX_ERRORS', trim: false)])])
+ 
+  parameters([string(defaultValue: '3', description: '', name: 'MAX_ERRORS', trim: false)])
  stages{
   stage('Compilar') {
     steps{
