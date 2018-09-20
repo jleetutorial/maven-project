@@ -11,7 +11,7 @@ pipeline {
      }
 
 stages{
-        stage('Build'){
+        stage('Build F12345_local'){
             steps {
                 bat 'mvn clean package'
             }
