@@ -52,9 +52,13 @@ pipeline {
     }
     stage('Confirm Deploy to Production') {
       steps {
+<<<<<<< HEAD
         timeout(time:5, unit:'MINUTES'){
           input(message: 'Desplegar a producción?', ok: "Aceptar")
         }
+=======
+        input(message: 'Desplegar a producción?', ok: 'Aceptar')
+>>>>>>> d03ed6c4d619516a4a05c7d73e26c028de810cfd
       }
     }
   }
