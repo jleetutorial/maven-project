@@ -30,6 +30,7 @@ pipeline {
       }
     }
     stage('aprobar') {
+      agent any
       steps {
         input(message: 'aprobar despliegue', ok: 'Si')
       }
