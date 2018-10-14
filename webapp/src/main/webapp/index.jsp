@@ -1,2 +1,1 @@
-Hello, World!
-RR
+Yahoo! Virgo Horoscope
