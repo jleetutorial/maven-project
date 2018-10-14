@@ -1,1 +1,1 @@
-Yahoo! Virgo Horoscope
+View Pipeline in Build Pipeline Plugin
