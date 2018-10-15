@@ -7,7 +7,7 @@
 	stage('Build'){
 	steps {
 	sh 'mvn clean package'
-	sh 'printenv'
+	echo sh(script: 'env|sort', returnStdout: true)
 	}
 	post {
 	success {
