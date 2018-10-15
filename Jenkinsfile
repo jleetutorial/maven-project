@@ -10,7 +10,7 @@
 	stage('Build'){
 	steps {
 	echo 'building here.'
-	sh 'mvn clean package'
+	#sh 'mvn clean package'
 	}
 	post {
 	success {
