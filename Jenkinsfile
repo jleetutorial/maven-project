@@ -1,19 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage ('Init') {
-            steps {
-                echo 'Final Manual Init...'
-            }
-        }
         stage ('Build') {
             steps {
-                echo 'Final Manual Build...'
+                sh 'maven clean package'
             }
-        }
-        stage ('Deploy') {
-            steps {
-                echo 'Final Manual Deploy...'
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
             }
         }
     }
