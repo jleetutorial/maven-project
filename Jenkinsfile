@@ -16,12 +16,9 @@
 	success {
 	echo 'Now Archiving...'
 	archiveArtifacts artifacts: '**/target/*.war'
-	stage ('Deploy to Staging'){
-	steps {
-	build job: 'deploy-to-staging1'
-	}
 	
-	}
+	build job: 'deploy-to-staging1'
+	
 	}
 	}
 	stage ('Deploy to Staging'){
