@@ -7,12 +7,14 @@
 	          maven 'localmaven'
 	         }
 	stages{
+	stage('Pre-Build'){
+	steps {
+		sh 'printenv'
+	}
+	}
 	stage('Build'){
 	steps {
 	sh 'mvn clean package'
-	}
-	steps {
-	sh 'printenv'
 	}
 	post {
 	success {
