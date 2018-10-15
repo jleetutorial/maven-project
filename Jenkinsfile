@@ -7,13 +7,9 @@
 	          maven 'localmaven'
 	         }
 	stages{
-	stage('Pre-Build'){
-	steps {
-		printenv
-	}
-	}
 	stage('Build'){
 	steps {
+	echo 'building here.'
 	sh 'mvn clean package'
 	}
 	post {
