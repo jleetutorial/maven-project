@@ -1,5 +1,8 @@
  pipeline {	
 	agent any
+	environment { 
+        CC = 'clang'
+    }
 	Tools {
 	          maven 'localmaven'
 	         }
