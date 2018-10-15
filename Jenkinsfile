@@ -9,7 +9,7 @@
 	stages{
 	stage('Pre-Build'){
 	steps {
-		sh 'printenv'
+		printenv
 	}
 	}
 	stage('Build'){
