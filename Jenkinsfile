@@ -3,7 +3,7 @@
 	environment { 
         CC = 'clang'
     }
-	Tools {
+	tools {
 	          maven 'localmaven'
 	         }
 	stages{
