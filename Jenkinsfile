@@ -9,14 +9,14 @@
 	stages{
 	stage('Build'){
 	steps {
-	echo 'building here.'
+	sh 'printenv'	
 	sh 'mvn clean package'
 	}
 	post {
 	success {
 	echo 'Now Archiving...'
 	archiveArtifacts artifacts: '**/target/*.war'
-	build job: 'Deploy-to-staging'
+	build job: 'deploy-to-staging1'
 	}
 	}
 	}
