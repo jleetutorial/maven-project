@@ -7,17 +7,23 @@
 	          maven 'localmaven'
 	         }
 	stages{
-	stage('Build'){
+	stage('Build-Master'){
+	when { branch 'master' } 
 	steps {
 	sh 'printenv'	
 	sh 'mvn clean package'
 	}
 	post {
 	success {
-	echo 'Now Archiving...'
-	archiveArtifacts artifacts: '**/target/*.war'
-	build job: 'deploy-to-staging1'
+	sh 'mvn deploy'
 	}
+	}
+	}
+	stage('Build-Non-Master'){
+	when { not { branch 'master' } }
+	steps {
+	sh 'printenv'	
+	sh 'mvn clean package'
 	}
 	}
 	}
