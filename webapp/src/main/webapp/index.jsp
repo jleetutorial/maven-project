@@ -1,1 +1,1 @@
-MANUAL TRIGGER FOR BUILD.
+Groovy - SH Command + Deploy to Stage
