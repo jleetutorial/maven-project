@@ -7,11 +7,13 @@
 	stage('Build'){
 	steps {
 	sh 'mvn clean package'
+	sh 'printenv'
 	}
 	post {
 	success {
 	echo 'Now Archiving...'
-	archiveArtifacts artifacts: '**/target/*.war'
+	#archiveArtifacts artifacts: '**/target/*.war'
+	
 	}
 	}
 	}
