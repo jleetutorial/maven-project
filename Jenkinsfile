@@ -8,7 +8,7 @@
 	         }
 	stages{
 	stage('Build-Master'){
-	when { branch 'master' } 
+	when { branch 'origin/master' } 
 	steps {
 	sh 'printenv'	
 	sh 'mvn clean package'
@@ -20,7 +20,7 @@
 	}
 	}
 	stage('Build-Non-Master'){
-	when { not { branch 'master' } }
+	when { not { branch 'origin/master' } }
 	steps {
 	sh 'printenv'	
 	sh 'mvn clean package'
