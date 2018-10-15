@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage ('Init') {
             steps {
-                echo 'RR Testing...'
+                echo 'Final Manual Init...'
             }
         }
         stage ('Build') {
             steps {
-                echo 'RR Building...'
+                echo 'Final Manual Build...'
             }
         }
         stage ('Deploy') {
             steps {
-                echo 'RR Code Deployment...'
+                echo 'Final Manual Deploy...'
             }
         }
     }
