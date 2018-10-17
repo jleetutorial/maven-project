@@ -1,1 +1,1 @@
-Hello, World updated git with ansible!
+Hello, World updated git staging coreapi!
