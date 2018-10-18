@@ -20,7 +20,7 @@
 	}
 	}
 	stage('Build-Non-Master'){
-	when { not { branch 'master' } }
+	when { not { branch 'master' } } // temp Jenkinsfile
 	steps {
 	sh 'printenv'	
 	sh 'mvn clean package'
