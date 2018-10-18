@@ -1,1 +1,1 @@
-make folder success one more build  3
+make building staging deploying
