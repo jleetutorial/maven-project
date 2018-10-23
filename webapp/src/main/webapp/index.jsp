@@ -1,1 +1,1 @@
-make building staging deploying
+make building staging deploying staging
