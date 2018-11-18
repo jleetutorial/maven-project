@@ -14,7 +14,7 @@ node {
       
               //sh 'mvn clean package'
                sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-               archiveArtifacts 'webapp/target/webapp.war'
+               archiveArtifacts '**/target/*.war'
 
 
 
