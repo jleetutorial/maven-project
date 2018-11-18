@@ -29,7 +29,7 @@ echo env.GIT_BRANCH
          {
           
                   GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-echo GIT_BRANCH
+echo 'GIT_BRANCH'
          }
    
    if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
