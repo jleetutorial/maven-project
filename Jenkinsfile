@@ -1,5 +1,6 @@
 node {
    def mvnHome
+   def bb
   
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
@@ -8,7 +9,7 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
-      
+
 
    }
    stage('Build') {
@@ -23,6 +24,13 @@ echo env.GIT_BRANCH
 
   //    echo ${branch} 
    }
+   
+   stage('Testtt'
+         {
+          
+                  GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+echo GIT_BRANCH
+         }
    
    if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
 
