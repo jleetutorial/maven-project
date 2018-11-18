@@ -18,6 +18,15 @@ node {
 
    echo 'build'  
    }
+   
+   if(env.BRANCH_NAME == ‘master’){
+
+        stage('Deliver for production') {
+      
+build 'deploy-to-production'
+            }
+        }
+   
    stage('Results') {
    echo 'archive'
    }
