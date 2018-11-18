@@ -7,6 +7,7 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
+      branch = scm.branches[0].name
       
 
    }
@@ -23,7 +24,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
    echo 'build'  
    }
    
-   if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || ${branch} == 'origin/master'){
 
         stage('Deliver for production') {
       
