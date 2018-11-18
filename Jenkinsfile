@@ -1,7 +1,9 @@
 node {
    def mvnHome
+   def branch
    withEnv(['GIT_BRANCH = sh(returnStdout: true, script: \'git rev-parse --abbrev-ref HEAD\').trim()']) {
-    // some block
+    // some blo
+      branch = ${GIT_BRANCH}
 }
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
@@ -23,7 +25,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
 
-   echo env.GIT_BRANCH 
+      echo ${branch} 
    }
    
    if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
