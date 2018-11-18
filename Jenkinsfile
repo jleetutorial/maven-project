@@ -5,7 +5,7 @@ node {
 }
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/Sunnygupta1401/maven-project.git'
+      //git 'https://github.com/Sunnygupta1401/maven-project.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
@@ -23,7 +23,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
 
-   echo 'build'  
+   echo 'env.GIT_BRANCH'  
    }
    
    if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
