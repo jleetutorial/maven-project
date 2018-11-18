@@ -23,7 +23,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
 
-   echo "env.GIT_BRANCH"  
+   echo env.GIT_BRANCH 
    }
    
    if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
