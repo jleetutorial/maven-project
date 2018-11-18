@@ -19,7 +19,7 @@ node {
 archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
-
+echo env.GIT_BRANCH
 
   //    echo ${branch} 
    }
