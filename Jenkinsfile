@@ -27,6 +27,14 @@ build 'deploy-to-production'
             }
         }
    
+   if(env.BRANCH_NAME == 'devlop'){
+
+        stage('Deliver for staging') {
+      
+build 'deploy-to-staging'
+            }
+        }
+   
    stage('Results') {
    echo 'archive'
    }
