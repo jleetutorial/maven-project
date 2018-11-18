@@ -27,7 +27,7 @@ build 'deploy-to-production'
             }
         }
    
-   if(env.BRANCH_NAME == 'devlop' || env.BRANCH_NAME == NULL){
+   if(env.BRANCH_NAME == 'devlop' || !env.BRANCH_NAME){
 
         stage('Deliver for staging') {
       
