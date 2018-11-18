@@ -1,5 +1,6 @@
 node {
    def mvnHome
+   def branch
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/Sunnygupta1401/maven-project.git'
