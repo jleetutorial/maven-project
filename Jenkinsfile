@@ -27,6 +27,14 @@ pipeline {
             }
         }
 
+stage('Deploy for production') {
+            when {
+                branch 'master'
+            }
+            steps {
+                              build job: 'Deploy-to-production'
 
+            }
+        }
     }
 }
