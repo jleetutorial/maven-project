@@ -8,7 +8,7 @@ node {
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
       GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-      echo '${GIT_BRANCH}'
+      echo "${GIT_BRANCH}"
 
    }
    stage('Build') {
