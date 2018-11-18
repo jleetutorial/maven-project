@@ -1,6 +1,5 @@
 node {
    def mvnHome
-   def branch
   
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
@@ -25,7 +24,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
   //    echo ${branch} 
    }
    
-   if(env.BRANCH_NAME == 'master' || ${GIT_BRANCH} == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
 
         stage('Deliver for production') {
       
