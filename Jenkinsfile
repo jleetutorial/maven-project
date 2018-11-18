@@ -1,11 +1,7 @@
 Node {
-
- tool name: 'localMaven', type: 'maven'
-
- stage('Build'){
-        sh 'mvn clean package'
+stage('Build'){
+       
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
            }
         
 }
