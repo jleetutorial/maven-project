@@ -17,14 +17,14 @@ pipeline {
             }
         }
         
-        
-        stage ('Deploy'){
-        if(env.BRANCH_NAME == 'develop'){
+        stage('Deliver for development') {
+            when {
+                branch 'develop'
+            }
+       
             steps {
                 build job: 'Deploy-to-staging'
             }
-        }
-  
         }
 
 
