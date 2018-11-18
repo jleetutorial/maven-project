@@ -1,6 +1,6 @@
 node {
    def mvnHome
-   def branch
+   def GIT_BRANCH
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/Sunnygupta1401/maven-project.git'
@@ -8,7 +8,7 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
-      branch = scm.branches[0].name
+GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
       
 
    }
@@ -25,7 +25,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
    echo 'build'  
    }
    
-   if(env.BRANCH_NAME == 'master' || ${branch} == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || ${GIT_BRANCH} == 'origin/master'){
 
         stage('Deliver for production') {
       
