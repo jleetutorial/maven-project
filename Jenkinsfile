@@ -1,10 +1,7 @@
 node {
    def mvnHome
    def branch
-   withEnv(['GIT_BRANCH = sh(returnStdout: true, script: \'git rev-parse --abbrev-ref HEAD\').trim()']) {
-    // some blo
-      branch = ${GIT_BRANCH}
-}
+  
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       //git 'https://github.com/Sunnygupta1401/maven-project.git'
@@ -25,10 +22,10 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
 
-      echo ${branch} 
+  //    echo ${branch} 
    }
    
-   if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || ${GIT_BRANCH} == 'origin/master'){
 
         stage('Deliver for production') {
       
