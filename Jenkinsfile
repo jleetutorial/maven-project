@@ -24,7 +24,7 @@ archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
    echo 'build'  
    }
    
-   if(env.BRANCH_NAME == 'master'){
+   if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'origin/master){
 
         stage('Deliver for production') {
       
