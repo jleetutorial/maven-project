@@ -41,7 +41,7 @@ build 'deploy-to-production'
             }
         }
    
-   if(env.BRANCH_NAME == 'devlop' || || GIT_BRANCH == 'origin/devlop'){
+   if(env.BRANCH_NAME == 'devlop' ||  GIT_BRANCH == 'origin/devlop'){
 
         stage('Deliver for staging') {
       
