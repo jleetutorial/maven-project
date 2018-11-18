@@ -33,7 +33,7 @@ echo env.GIT_BRANCH
 echo GIT_BRANCH
          }
    
-   if(env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'origin/master'){
 
         stage('Deliver for production') {
       
