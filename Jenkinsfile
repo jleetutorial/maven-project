@@ -17,21 +17,23 @@ pipeline {
             }
         }
         
+        
+        stage ('Deploy'){
         if(env.BRANCH_NAME == 'develop'){
-
-        stage ('Deploy to Staging'){
             steps {
                 build job: 'Deploy-to-staging'
             }
         }
-        }
-        stage ('Deploy to Production'){
-            steps{
+        
+            if(env.BRANCH_NAME == 'master'){
+
+         steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
                 }
 
                 build job: 'Deploy-to-Production'
+            }
             }
             post {
                 success {
