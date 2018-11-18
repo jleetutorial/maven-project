@@ -11,6 +11,9 @@ node {
    }
    stage('Build') {
       // Run the maven build
+      
+              sh 'mvn clean package'
+
    echo 'build'  
    }
    stage('Results') {
