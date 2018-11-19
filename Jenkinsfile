@@ -23,7 +23,7 @@ node {
 archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
-echo env.GIT_BRANCH
+//echo env.GIT_BRANCH
 
   //    echo ${branch} 
    }
@@ -32,6 +32,7 @@ echo env.GIT_BRANCH
          {
           
 echo GIT_BRANCH
+echo env.BRANCH_NAME
          }
    
    if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'origin/master'){
