@@ -18,7 +18,7 @@ node {
       // Run the maven build
       
               //sh 'mvn clean package'
-               sh "'${mvnHome}/bin/mvn' clean"
+               sh "'${mvnHome}/bin/mvn' clean package"
 archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
