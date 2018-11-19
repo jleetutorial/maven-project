@@ -18,9 +18,8 @@ node {
       // Run the maven build
       
               //sh 'mvn clean package'
-               sh "'${mvnHome}/bin/mvn' clean"
-archiveArtifacts artifacts: '**/target/*.war'
-      //, fingerprint: true
+               sh "'${mvnHome}/bin/mvn' clean package"
+archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 
 
 echo env.GIT_BRANCH
