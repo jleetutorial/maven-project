@@ -36,7 +36,7 @@ echo GIT_BRANCH
 echo env.BRANCH_NAME
          }
    
-   if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'origin/master'){
+   if(env.BRANCH_NAME == 'master' || GIT_BRANCH == 'master'){
 
         stage('Deliver for production') {
       
@@ -44,7 +44,7 @@ build 'deploy-to-production'
             }
         }
    
-   if(env.BRANCH_NAME == 'devlop' ||  GIT_BRANCH == 'origin/devlop'){
+   if(env.BRANCH_NAME == 'devlop' ||  GIT_BRANCH == 'devlop'){
 
         stage('Deliver for staging') {
       
