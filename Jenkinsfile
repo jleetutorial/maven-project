@@ -7,6 +7,7 @@ node {
       // Get some code from a GitHub repository
       //git 'https://github.com/Sunnygupta1401/maven-project.git'
       // Get the Maven tool.
+      checkout scm
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
