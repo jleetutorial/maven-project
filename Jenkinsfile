@@ -11,8 +11,8 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool name: 'localMaven', type: 'maven'
-                  GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-
+                  //GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: "git name-rev --name-only HEAD").trim()
 
    }
    stage('Build') {
