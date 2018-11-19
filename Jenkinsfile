@@ -19,7 +19,8 @@ node {
       
               //sh 'mvn clean package'
                sh "'${mvnHome}/bin/mvn' clean"
-archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+archiveArtifacts artifacts: '**/target/*.war'
+      //, fingerprint: true
 
 
 echo env.GIT_BRANCH
