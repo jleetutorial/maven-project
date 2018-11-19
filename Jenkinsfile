@@ -13,7 +13,7 @@ node {
       mvnHome = tool name: 'localMaven', type: 'maven'
                   //GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 GIT_BRANCH_NAME = 'origin/' + sh(returnStdout: true, script: "git name-rev --name-only HEAD").trim()
-    GIT_BRANCH = GIT_BRANCH_PATH.split('remotes/origin/')[1]
+    GIT_BRANCH = GIT_BRANCH_NAME.split('remotes/origin/')[1]
 
    }
    stage('Build') {
