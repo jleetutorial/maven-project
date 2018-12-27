@@ -7,5 +7,6 @@ only using vs code
 
 see changes listed BW staging and prod hdakjhdhakjshdhask
 
+merge functionality
 from stagingtest=> staging => production
 https://www.level-up.one/devops-pdf-book
