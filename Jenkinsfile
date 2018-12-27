@@ -26,13 +26,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-staging:/var/lib/tomcat7/webapps"
+                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-staging/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-production:/var/lib/tomcat7/webapps"
+                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-production/webapps"
                     }
                 }
             }
