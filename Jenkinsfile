@@ -3,8 +3,15 @@ pipeline {
     tools {
         maven 'localMaven'
     }
+    parameters {
+         string(name: 'tomcat_dev', defaultValue: 'localhost:8090', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'localhost:9090', description: 'Production Server')
+    }
+    triggers {
+         pollSCM('* * * * *')
+    }
     stages{
-        stage('Build'){
+        stage ('Build') {
             steps {
                 sh 'mvn clean package'
             }
@@ -15,24 +22,18 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Staging'){
-            steps {
-                build job: 'deploy-to-staging'
-            }
-        }
-        stage('Deploy to Production'){
-            steps {
-                timeout(time:1, unit:'DAYS'){
-                    input message:'Approve production build?'
+        stage ('Deployments') {
+            parallel{
+                stage ('Deploy to Staging'){
+                    steps {
+                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-staging:/var/lib/tomcat7/webapps"
+                    }
                 }
-                build job: 'deploy-to-prod'
-            }
-            post {
-                success {
-                    echo 'Code deployed to production'
-                }
-                failure {
-                    echo 'Deployment failed'
+
+                stage ("Deploy to Production"){
+                    steps {
+                        sh "cp **/target/*.war /Users/filippoboiani/apache-tomcat-8.5.37-production:/var/lib/tomcat7/webapps"
+                    }
                 }
             }
         }
