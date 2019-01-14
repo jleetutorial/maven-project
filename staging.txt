@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Staging Area
+=======
+Something Changed
+>>>>>>> 9679a9828b1c4418e3799586a437cdd95657efc5
