@@ -12,8 +12,27 @@ public class Greeter {
 
   }
 
-  //TODO: Add javadoc comment
-  public String greet(String someone) {
+
+  /**
+   * @param someone the string
+   * @return string formated string
+   */
+  public final String greet(final String someone) {
+    String aString = "bob";
+    String b = aString;
+    b.replace('b', 'p');
+    if (b.equals("pop")) {
+      return null;
+    }
     return String.format("Hello, %s!", someone);
   }
+  
+
+  
+
+        
 }
+
+
+
+

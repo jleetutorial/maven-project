@@ -1,0 +1,52 @@
+pipeline{ 
+  agent any
+  tools {
+    maven 'maven'
+  }
+  parameters {
+    string(name: 'tomcat_qa', defaultValue: 'C:\\apache-tomcat-9.0.8-qa\\webapps\\', description: 'QA server on local')
+    string(name: 'tomcat_prod', defaultValue: '18.220.209.126', description: 'Production Server on AWS')
+    string(name: 'ssh_key_folder', defaultValue: "C:\\AWS\\SSH\\")
+  }
+  triggers {
+    pollSCM '* * * * *' 
+  }
+  stages{
+    stage('Build'){
+      steps{
+        script {
+          if(isUnix()){
+            sh 'mvn clean package'
+          }else{
+            bat 'mvn clean package'
+          }
+        }
+      }
+      post {
+        success {
+          echo 'Now Archiving...'
+          archiveArtifacts artifacts: '**/target/*.war', onlyIfSuccessful: true
+        }
+      }
+    }
+    //stage('Copy artifact to workfolder'){
+    //  steps{
+    //    copyArtifacts filter: '**/target/*.war', fingerprintArtifacts: true, projectName: 'Deploy-AWS', selector: workspace(), target: 'C:\\deployWars'
+    //  }
+    //}
+    stage ('Deployments'){
+      parallel{
+        stage ('Deploy to Staging'){
+          steps {
+            bat "copy /Y webapp\\target\\webapp.war ${params.tomcat_qa}"
+          }
+        }
+        stage ('Deploy to Production'){
+          steps {
+            bat "echo y|pscp -i ${params.ssh_key_folder}tomcat-PoC.ppk webapp\\target\\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+          }
+        }
+      }
+    }
+  }
+}
