@@ -19,7 +19,7 @@ stages{
         }
         stage('Depoly to Staging'){
             steps {
-                Build job: 'Depoly-to-staging'
+                build job: 'Deploy-to-staging'
             }
         }
     }
