@@ -1,13 +1,13 @@
 pipeline {
     agent any
- 
-    tools {
+    stages{
+        tools {
         maven 'localMaven'
     }
  
 stages{
         stage('Build'){
-            steps {
+            steps{
                 bat 'mvn clean package'
                 bat "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
@@ -15,6 +15,6 @@ stages{
                 success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
-                }
-            }
         }
+    }
+}
