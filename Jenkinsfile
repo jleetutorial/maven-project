@@ -5,15 +5,6 @@ pipeline {
         maven 'localMaven'
     }
 
-    parameters {
-         string(name: 'tomcat_stage', defaultValue: '54.229.33.187', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '52.51.30.116', description: 'Production Server')
-    }
-
-    triggers {
-         pollSCM('* * * * *')
-     }
-
     stages{
         stage('Build'){
             steps {
@@ -22,24 +13,16 @@ pipeline {
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
 
-        stage ('Deployments'){
-            parallel{
-                stage ('Deploy to Staging'){
-                    steps {
-                        sh "scp -i /Users/.../aws/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_stage}:/var/lib/tomcat7/webapps"
-                    }
-                }
-
-                stage ("Deploy to Production"){
-                    steps {
-                        sh "scp -i /Users/.../aws/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-                    }
-                }
+        stage ('Tests'){
+            steps {
+                sh """
+                     mkdir -p selenium-screenshots/error
+                     /usr/bin/mvn -B -f selenium/pom.xml clean test -X
+                   """
             }
         }
     }
