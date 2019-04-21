@@ -1,6 +1,7 @@
 # maven-project
-Source code for James Lee's Jenkins course.
 
-Check out our Latest DevOps PDF book.
+This project created only for learning purpose in order to understand how CI / CD pipeline works end-2-end.
 
-https://www.level-up.one/devops-pdf-book
+All ip's are dynamic so if You're checking this project out update those to the corresponding ones for Your specific infrastructure.
+ 
+Triggering non-master branch 2
