@@ -6,10 +6,10 @@
             <class name ="GridExample"/>
         </classes>
     </test>
-    <test name="GRID TEST WITH SERIAL EXECTION WITH BROWSER CHROME">
+    <!-- <test name="GRID TEST WITH SERIAL EXECTION WITH BROWSER CHROME">
         <parameter name ="browserType" value="chrome"/>
         <classes>
             <class name ="GridExample"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
