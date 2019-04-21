@@ -15,7 +15,7 @@ public class GridExample {
     public void setupBaseTest() throws Exception {
         DesiredCapabilities dr = null;
         dr = DesiredCapabilities.chrome();
-        driver = new RemoteWebDriver(new URL("http://34.245.34.8:4444/wd/hub"), dr);
+        driver = new RemoteWebDriver(new URL("http://34.254.183.221:4444/wd/hub"), dr);
     }
 
     @AfterMethod(alwaysRun = true)
