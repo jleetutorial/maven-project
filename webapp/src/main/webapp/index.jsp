@@ -15,7 +15,8 @@
 
         <h1>Hello World!</h1>
         
-        <h2>A few facts about the world we live in</h2>
+        
+        <h2>Teste da Integração Contínua</h2>
         
         <img src="earth.jpg" width="400">
         
@@ -83,18 +84,7 @@
         
         </table>
         
-        <hr>
-        
-        <form action="http://space-facts.com/earth/">
-        
-            <p>Want to know more?</p>
-            
-            <p><input type="submit" value="Click Here!"></p>
-        
-        </form>
-    
-    
-            
+        <hr>                
     </body>
     
 </html>
