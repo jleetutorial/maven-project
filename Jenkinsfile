@@ -16,25 +16,13 @@ pipeline {
 
             }
 
-            post {
-
-                success {
-
-                    echo 'Now Archiving...'
-
-                    archiveArtifacts artifacts: '**/target/*.war'
-
-                }
-
-            }
-
         }
 
         stage ('Deploy to Staging'){
 
             steps {
 
-                bat("xcopy **/target/*.war C:\Users\AnthonyEpps\Downloads\apache-tomcat-8.5.41\apache-tomcat-8.5.41\webapps /O /X /E /H /K")
+                bat("xcopy C:\Program Files (x86)\Jenkins\workspace\MultibranchTest_master\webapp\target\webapp.war C:\Users\AnthonyEpps\Downloads\apache-tomcat-8.5.41\apache-tomcat-8.5.41\webapps /O /X /E /H /K")
 
             }
 
