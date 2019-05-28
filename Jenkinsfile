@@ -6,11 +6,6 @@ pipeline {
         maven 'LocalMaven'
     }
 
-	triggers {
-		GenericTrigger(
-			GitHubHookTriggerForGITScmPolling: true)
-    }
-
     stages{
 
         stage('Build'){
