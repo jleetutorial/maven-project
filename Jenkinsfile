@@ -7,11 +7,8 @@ pipeline {
     }
 
 	triggers {
-		gitlab(
-			triggerOnPush: true, 
-			triggerOnMergeRequest: true, 
-			branchFilterType: "NameBasedFilter",
-			includeBranchesSpec: "feature/*")
+		GenericTrigger(
+			GitHubHookTriggerForGITScmPolling: true)
     }
 
     stages{
