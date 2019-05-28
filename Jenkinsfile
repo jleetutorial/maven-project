@@ -7,7 +7,6 @@ pipeline {
     }
 	
 
-
     stages{
 
         stage('Build'){
