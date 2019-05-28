@@ -6,6 +6,14 @@ pipeline {
         maven 'LocalMaven'
     }
 
+	triggers {
+		gitlab(
+			triggerOnPush: true, 
+			triggerOnMergeRequest: true, 
+			branchFilterType: "NameBasedFilter",
+			includeBranchesSpec: "feature/*")
+    }
+
     stages{
 
         stage('Build'){
