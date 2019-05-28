@@ -1,6 +1,11 @@
 pipeline {
 
     agent any
+	
+	parameters {
+         string(name: 'tomcat_dev', defaultValue: 'http://localhost:8282/', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'http://localhost:8282/', description: 'Production Server')
+    }
 
     tools {
         maven 'LocalMaven'
@@ -34,7 +39,7 @@ pipeline {
 
             steps {
 
-                build job: 'deploy-to-staging'
+                sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
 
             }
 
@@ -54,7 +59,7 @@ pipeline {
 
 
 
-                build job: 'deploy-to-prod'
+                 sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
 
             }
 
