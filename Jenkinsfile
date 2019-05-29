@@ -5,7 +5,6 @@ pipeline {
     tools {
         maven 'LocalMaven'
     }
-	
 
     stages{
 
