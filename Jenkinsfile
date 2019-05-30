@@ -6,6 +6,7 @@ pipeline {
         maven 'LocalMaven'
     }
 
+
 	triggers {
         githubPush()
     }
