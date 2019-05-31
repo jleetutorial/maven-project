@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Hello World!</title>
+        <title>Hello World versão 2!</title>
 
         <meta charset="utf-8" />
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -20,20 +20,12 @@
         
         <img src="earth.jpg" width="400">
         
-        <p>Earth is the third planet from the Sun and is the largest of the terrestrial planets. The Earth is the only planet in our solar system not to be named after a Greek or Roman deity. The Earth was formed approximately 4.54 billion years ago and is the only known planet to support life.</p>
+        <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
         
         <hr>
         
-        <h3>About the earth</h3>
-        
-            <ul>
-            
-                <li>Mass: 5,972,190,000,000,000 billion kg</li>
-                <li>Equatorial Diameter: 12,756 km</li>
-                <li>Notable Moons: <a href="http://space-facts.com/the-moon/">The Moon</a></li>
-        
-            </ul>
-        
+        <h3>About the earth</h3>        
+                   
         <hr>
         
             <h3>Esta aplicação passou a utilizar um webhook!</h3>
@@ -47,42 +39,6 @@
             </ol>
         
         <hr>
-        
-        <table>
-        
-            <thead>
-            
-                <tr>
-                
-                    <th>Name</th>
-                    <th>Radius</th>
-                    <th>Average<br>Temperature</th>
-                    
-                </tr>
-                
-            </thead>
-            
-            <tbody>
-            
-                <tr>
-                
-                    <td>Mars</td>
-                    <td>3,403km</td>
-                    <td>-46&deg;c</td>
-                    
-                </tr>
-                
-                <tr>
-                
-                    <td>Venus</td>
-                    <td>6,052km</td>
-                    <td>462&deg;c</td>
-                    
-                </tr>
-            
-            </tbody>
-        
-        </table>
         
         <hr>                
     </body>
