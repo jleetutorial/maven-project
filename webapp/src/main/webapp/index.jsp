@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Hello World versão 2!</title>
+        <title>Ola versão utilizando Docker!</title>
 
         <meta charset="utf-8" />
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -13,10 +13,10 @@
         
         <iframe width="560" height="315" src="https://www.youtube.com/embed/DrDm7uO4Fu0?rel=0" frameborder="0" allowfullscreen align="right"></iframe>
 
-        <h1>Hello World!</h1>
+        <h1>Hello Docker!</h1>
         
         
-        <h2>Teste da Integração Contínua</h2>
+        <h2>Teste da Integração Contínua servidor Tomcat dentro do Docker</h2>
         
         <img src="earth.jpg" width="400">
         
