@@ -7,3 +7,5 @@ COPY webapp/target/webapp.war /usr/local/tomcat/webapps/
 
 # Expose 8080 port for the service
 EXPOSE 8080
+
+ENTRYPOINT /bin/bash
