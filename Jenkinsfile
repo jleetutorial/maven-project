@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    parameters {
-         string(name: 'tomcat_dev', defaultValue: '3.16.89.185', description: 'Staging Server')
-         
-    }
 
     triggers {
          pollSCM('* * * * *')
@@ -27,7 +23,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "ssh -t -t  **/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "ssh -i **/target/*.war root@3.16.89.185:/var/lib/tomcat7/webapps"
                     }
                 }
 
