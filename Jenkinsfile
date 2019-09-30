@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "ssh **/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "ssh -i **/target/*.war root@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
