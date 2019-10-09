@@ -28,14 +28,14 @@
       <url>file:///tmp/maven-project-site</url>
     </site>
     <repository>
-      <id>sample-snap</id>
+      <id>release</id>
       <name>sample-snap</name>
-      <url>http://13.127.3.58:8081/nexus/content/repositories/sample-snap/</url>        
+      <url>http://54.241.187.151:8081/repository/maven-releases/</url>        
     </repository>       
      <snapshotRepository>
-        <id>sample-rel</id>
+        <id>snapshot</id>
         <name>sample-rel</name>
-        <url>http://13.127.3.58:8081/nexus/content/repositories/sample-rel/</url>      
+        <url>http://54.241.187.151:8081/repository/maven-snapshots/</url>      
      </snapshotRepository>  
   </distributionManagement>
 
