@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/server/src/test/java/com/example/TestGreeter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
