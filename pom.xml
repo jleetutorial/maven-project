@@ -16,6 +16,10 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
 
+  <properties>
+    <java.version>1.7</java.version>
+  </properties>
+         
   <modules>
     <module>server</module>
     <module>webapp</module>
