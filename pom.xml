@@ -28,6 +28,21 @@
       <url>file:///tmp/maven-project-site</url>
     </site>
   </distributionManagement>
+   
+  <distributionManagement>
+
+    <repository>
+        <id>releases</id>
+        <name>Releases</name>
+        <url>http://localHost:8081/repository/YourRepo/</url>
+    </repository>
+
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>Snapshots</name>
+        <url>http://localHost:8081/repository/YourRepo/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <build>
     <plugins>
