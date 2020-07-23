@@ -18,6 +18,8 @@ public class Greeter {
   */
   
   public final String greet(final String someone) {
+    String data;
+    String data;
     return String.format("Hello, %s!", someone);
   }
 }
