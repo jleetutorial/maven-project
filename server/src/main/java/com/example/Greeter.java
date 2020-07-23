@@ -18,8 +18,7 @@ public class Greeter {
   */
   
   public final String greet(final String someone) {
-    String data;
-    System.out.println( "Hello World"+data );
+
     return String.format("Hello, %s!", someone);
   }
 }
