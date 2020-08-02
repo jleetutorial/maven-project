@@ -21,14 +21,6 @@
     <module>webapp</module>
   </modules>
 
-  <distributionManagement>
-    <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-    </site>
-  </distributionManagement>
-
   <build>
     <plugins>
       <plugin>
@@ -38,7 +30,7 @@
           <target>1.6</target>
         </configuration>
       </plugin>
-
+           
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
@@ -152,7 +144,25 @@
           <artifactId>taglist-maven-plugin</artifactId>
           <version>2.4</version>
         </plugin>
-
+<plugin>
+   <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-deploy-plugin</artifactId>
+   <version>2.8.2</version>
+   <executions>
+      <execution>
+         <id>default-deploy</id>
+         <phase>deploy</phase>
+         <goals>
+            <goal>deploy</goal>
+         </goals>
+      </execution>
+   </executions>
+         <configuration>
+                  <serverId>nexus</serverId>
+                  <nexusUrl>http://localhost:8081/nexus/#view-repositories;2~browsestorage</nexusUrl>
+         </configuration>
+</plugin>
+               
         <plugin>
           <groupId>org.mortbay.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
@@ -161,7 +171,14 @@
       </plugins>
     </pluginManagement>
   </build>
-
+         
+<distributionManagement>
+   <repository>
+      <id>nexus</id>
+      <url>http://localhost:8081/nexus/#view-repositories;2~browsestorage</url>
+   </repository>         
+</distributionManagement>   
+         
   <dependencyManagement>
     <dependencies>
       <dependency>
