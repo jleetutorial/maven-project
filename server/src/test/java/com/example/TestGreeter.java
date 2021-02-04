@@ -23,7 +23,7 @@ public class TestGreeter {
 
     assertThat(greeter.greet(someone), containsString(someone));
   }
- // this is time wast
+ 
   @Test 
   public void greetShouldIncludeGreetingPhrase() {
     String someone = "World";
