@@ -6,7 +6,7 @@ package com.example;
 public class Greeter {
 
   /**
-   * This is a constjhjkkkructor.
+   * This is a constjkructor.
    */
   public Greeter() {
 
