@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Init')
+    stage('Init'){
       steps {
         echo 'Testing Process starts'
       }
@@ -17,19 +17,22 @@ pipeline {
       step {
         echo 'Testing Process Ends'
       }
+    }
 
-    stage('Build')
+    stage('Build'){
       steps {
         echo 'Building process Starts...'
         }
       steps {
         echo 'Building process Ends'
       }
+    }
 
-    stage('Deploy')
+    stage('Deploy'){
       steps {
         echo 'code Deployed'
       }
+    }  
 
   }
 
