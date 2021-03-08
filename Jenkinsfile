@@ -32,7 +32,7 @@ pipeline {
       steps {
         echo 'code Deployed'
       }
-    }  
+    }
 
   }
 
