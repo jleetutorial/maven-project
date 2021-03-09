@@ -31,6 +31,14 @@ pipeline {
         build job: 'deploy-to-itf-p'
         echo 'Staging Deployment completes...'
       }
+      post {
+        success {
+          echo 'ITF Deployment is SUCCESS!!!'
+        }
+        failure {
+          echo 'ITF Deployment is FAIULURE!!!--- Please debug & Fix now...'
+        }
+      }
     }
 
     stage('Deploy to Production'){
