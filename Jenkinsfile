@@ -25,9 +25,11 @@ pipeline {
       }
     }
 
-    stage('Deploy'){
+    stage('Deploy to staging - ITF'){
       steps {
-        echo 'code Deployed'
+        echo 'ITF Deployment Starts'
+        build job: 'itf deploy'
+        echo 'Staging Deployment completes...'
       }
     }
 }
