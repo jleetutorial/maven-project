@@ -28,7 +28,7 @@ pipeline {
     stage('Deploy to staging - ITF'){
       steps {
         echo 'ITF Deployment Starts'
-        build job: 'itf deploy'
+        build job: 'deploy-to-itf-p'
         echo 'Staging Deployment completes...'
       }
     }
@@ -36,7 +36,6 @@ pipeline {
     stage('Deploy to Production'){
       steps {
         echo 'PROD Deployment Starts'
-        build job: 'deploy-to-prod'
         echo 'PROD Deployment completes...'
       }
     }
