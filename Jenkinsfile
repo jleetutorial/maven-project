@@ -44,6 +44,10 @@ pipeline {
     stage('Deploy to Production'){
       steps {
         echo 'PROD Deployment Starts'
+        timeout(time:5 , unit:'DAYS'){
+          input message:'Approve PRODUCTION Deployment..'
+        }
+        build job: 'deploy-to-prod-p'
         echo 'PROD Deployment completes...'
       }
     }
