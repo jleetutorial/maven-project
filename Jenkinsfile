@@ -32,5 +32,14 @@ pipeline {
         echo 'Staging Deployment completes...'
       }
     }
+
+    stage('Deploy to Production'){
+      steps {
+        echo 'PROD Deployment Starts'
+        build job: 'deploy-to-prod'
+        echo 'PROD Deployment completes...'
+      }
+    }
+
 }
 }
