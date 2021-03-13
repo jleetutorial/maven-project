@@ -1,56 +1,42 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build'){
-      steps {
-        echo 'Building process Starts...'
-        sh 'mvn clean package'
-        echo 'Building process Ends'
-      }
-      post {
-        success {
-          echo 'Now Archiving...'
-          archiveArtifacts artifacts: '**/*.war'
-        }
-      }
+    agent any
+
+    parameters {
+         string(name: 'tomcat_dev', defaultValue: '35.166.210.154', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: '34.209.233.6', description: 'Production Server')
     }
 
-    stage('Init'){
-      steps {
-        echo 'Testing Process starts'
-        echo 'Api Testing Process'
-        echo 'Functional Testing Process '
-        echo 'Performance Testing Process'
-        echo 'Testing Process Ends'
-      }
-    }
+    triggers {
+         pollSCM('* * * * *')
+     }
 
-    stage('Deploy to staging - ITF'){
-      steps {
-        echo 'ITF Deployment Starts'
-        build job: 'deploy-to-itf-p'
-        echo 'Staging Deployment completes...'
-      }
-      post {
-        success {
-          echo 'ITF Deployment is SUCCESS!!!'
+stages{
+        stage('Build'){
+            steps {
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
         }
-        failure {
-          echo 'ITF Deployment is FAIULURE!!!--- Please debug & Fix now...'
-        }
-      }
-    }
 
-    stage('Deploy to Production'){
-      steps {
-        echo 'PROD Deployment Starts'
-        timeout(time:5 , unit:'DAYS'){
-          input message:'Approve PRODUCTION Deployment..'
-        }
-        build job: 'deploy-to-prod-p'
-        echo 'PROD Deployment completes...'
-      }
-    }
+        stage ('Deployments'){
+            parallel{
+                stage ('Deploy to Staging'){
+                    steps {
+                        sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                    }
+                }
 
-}
+                stage ("Deploy to Production"){
+                    steps {
+                        sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    }
+                }
+            }
+        }
+    }
 }
