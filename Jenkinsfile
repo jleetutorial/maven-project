@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i /c/work/git/tomcat-demo.pem test.pem"
+                        bat "scp -i c:\work\git\tomcat-demo.pem c:\work\git\test.pem"
                     }
                 }
 
