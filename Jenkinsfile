@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i C:\work\git\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/usr/share/tomcat/webapps"
+                        sh "scp -i /C/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/usr/share/tomcat/webapps"
                     }
                 }
 
