@@ -33,7 +33,7 @@ stages{
 
                 stage ("Deploy to Production"){
                     steps {
-                        //bat "scp -i /c/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/usr/share/tomcat/webapps"
+                        bat "scp -i /c/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/usr/share/tomcat/webapps"
                     }
                 }
             }
