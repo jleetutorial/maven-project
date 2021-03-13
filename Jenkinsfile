@@ -28,6 +28,7 @@ stages{
                 stage ('Deploy to Staging'){
                     steps {
                         sh "scp -i /C/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/usr/share/tomcat/webapps"
+                        sh "scp -i /C/work/git/tomcat-demo.pem **/target/*.war ec2-user@ec2-3-15-204-48.us-east-2.compute.amazonaws.com:/usr/share/tomcat/webapps"
                     }
                 }
 
