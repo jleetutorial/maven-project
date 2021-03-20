@@ -1,4 +1,4 @@
-Hello, World - Gurpreet and Subhi- Love you!
+Hello, World
 
 1
 2
