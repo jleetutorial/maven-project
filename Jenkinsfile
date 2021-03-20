@@ -1,19 +1,20 @@
+
 pipeline {
     agent any
-
-    parameters {
-         string(name: 'tomcat_dev', defaultValue: '3.15.204.48', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '18.220.199.9', description: 'Production Server')
-    }
-
+    
+    parameters { 
+         string(name: 'tomcat_dev', defaultValue: '35.166.210.154', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: '34.209.233.6', description: 'Production Server')
+    } 
+ 
     triggers {
-         pollSCM('* * * * *')
+         pollSCM('* * * * *') // Polling Source Control
      }
-
+ 
 stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
             post {
                 success {
@@ -22,18 +23,18 @@ stages{
                 }
             }
         }
-
+ 
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i /c/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/usr/share/tomcat/webapps"
+                        sh "WinSCP -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/usr/share/tomcat/webapps"
                     }
                 }
-
+ 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "scp -i /c/work/git/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/usr/share/tomcat/webapps"
+                        bat "winscp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/usr/share/tomcat/webapps"
                     }
                 }
             }
