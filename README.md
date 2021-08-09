@@ -1,5 +1,5 @@
 # maven-project
-Source code for Irfan's Jenkins course.
+Source code for Irfan's and Naveen's Jenkins course.
 
 Check out our Latest DevOps PDF book.
 
