@@ -42,7 +42,7 @@
 
 
 
-          stage("pushing to dockerhub ") {
+          stage("deploy to tomcat ") {
             steps {
                sh '''
                 docker run -itd -p 8888:8080 kemvoueric/maven:latest
