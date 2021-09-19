@@ -31,7 +31,20 @@
             }
           }
 
+          stage("pushing to dockerhub ") {
+            steps {
+               sh '''
+                docker push  kemvoueric/maven:latest
+			   '''
+            }
+          }
 
-
+          stage("pushing to dockerhub ") {
+            steps {
+               sh '''
+                docker run -itd -p 8888:8080 kemvoueric/maven:latest
+			   '''
+            }
+          }
         }
       }
