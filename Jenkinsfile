@@ -2,6 +2,7 @@
         agent any
 		
         stages {
+
           stage("Code testing") {
             agent any
             steps {
@@ -10,6 +11,7 @@
               }
             }
           }
+
           stage("maven Build") {
             steps {
                withSonarQubeEnv('sonarqube') {
@@ -23,13 +25,12 @@
           stage("build images ") {
             steps {
                sh '''
-			
-
                 sudo docker rmi -f kemvoueric/maven:latest  || true
                 sudo docker build -t kemvoueric/maven  .
 			   '''
             }
           }
+		  
 
           stage("pushing to dockerhub ") {
             steps {
@@ -39,6 +40,8 @@
             }
           }
 
+
+
           stage("pushing to dockerhub ") {
             steps {
                sh '''
@@ -46,5 +49,8 @@
 			   '''
             }
           }
+
+
+
         }
       }
