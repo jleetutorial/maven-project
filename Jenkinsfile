@@ -1,5 +1,8 @@
-      pipeline {
-        agent none
+ pipeline {
+        agent any
+		 tools {
+         maven 'M3'
+           }
         stages {
           stage("Code testing") {
             agent any
@@ -9,13 +12,13 @@
               }
             }
           }
-          stage("Quality Gate") {
+          stage("maven Build") {
             steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
+              sh '''
+			  mvn -B -DskipTests  clean validate compile test package verify
+		
+			  '''
             }
           }
         }
       }
-      
