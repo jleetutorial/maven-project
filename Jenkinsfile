@@ -23,6 +23,7 @@
           stage("build images ") {
             steps {
                sh '''
+	       sudo docker rm -f $(sudo docker ps -aq)
                 sudo docker rmi -f $(docker images -aq) || true
                 sudo docker build -t kemvoueric/maven  .
 			   '''
