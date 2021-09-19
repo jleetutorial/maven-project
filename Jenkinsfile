@@ -1,7 +1,5 @@
  pipeline {
-        agent {
-       label 'node1'
-        }
+        agent any
 		
         stages {
           stage("Code testing") {
@@ -19,5 +17,19 @@
               }
             }
           }
+
+
+
+          stage("build images ") {
+            steps {
+               sh '''
+                sudo docker rmi -f $(docker images -aq) || true
+                sudo docker build -t kemvoueric/maven  .
+			   '''
+            }
+          }
+
+
+
         }
       }
