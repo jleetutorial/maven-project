@@ -1,7 +1,7 @@
  pipeline {
         agent any
 		 tools {
-         maven 'Maven 3.8.2'
+         maven 'maven 3.8.2'
            }
         stages {
           stage("Code testing") {
@@ -14,10 +14,9 @@
           }
           stage("maven Build") {
             steps {
-              sh '''
-			  mvn -B -DskipTests  clean validate compile test package verify
-		
-			  '''
+               withSonarQubeEnv('sonarqube') {
+                sh 'mvn clean install package  sonar:sonar'
+              }
             }
           }
         }
