@@ -27,7 +27,8 @@ pipeline {
                cd sample-project-maven
                mv  /var/lib/jenkins/workspace/docker-agent/webapp/target/webapp.war .
                git add .
-         
+                git config --global user.email "kemvoueric"
+                git config --global user.name "kemvoupatterson@gmail.com"
                git commit -m test 
                git push https://kemvoueric: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@github.com/kemvoueric/sample-project-maven.git
 
