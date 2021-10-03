@@ -17,7 +17,7 @@ pipeline {
 
          stage('git') {
               agent {
-        docker { image 'git:latest' }
+        docker { image 'alpine/git' }
     }
             steps {
                 sh '''
