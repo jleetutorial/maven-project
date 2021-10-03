@@ -17,7 +17,7 @@ pipeline {
 
          stage('git') {
               agent {
-        docker { image 'kemvoueric/ubuntu_java_maven_git:latest' }
+        docker { image 'kemvoueric/ubuntu_java_maven_git:001' }
     }
             steps {
                 sh '''
@@ -28,8 +28,7 @@ pipeline {
                mv  /var/lib/jenkins/workspace/docker-agent/webapp/target/webapp.war .
                git add .
                ls -la 
-                git config --global user.email "kemvoupatterson@gmail.com"
-                git config --global user.name "kemvoueric"
+                
                git commit -m test 
                git push https://kemvoueric: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@github.com/kemvoueric/sample-project-maven.git
 
