@@ -22,6 +22,7 @@ pipeline {
             steps {
                 sh '''
                ls /var/lib/jenkins/workspace/docker-agent/webapp/target
+               rm -rf sample-project-maven || true
                git clone https://kemvoueric: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@github.com/kemvoueric/sample-project-maven.git
                cd sample-project-maven
                mv /var/lib/jenkins/workspace/docker-agent/webapp/target/webapp.war .
