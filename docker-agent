@@ -17,11 +17,11 @@ pipeline {
 
          stage('git') {
               agent {
-        docker { image 'ubuntu' }
+        docker { image 'kemvoueric/ubuntu_java_maven_git:latest' }
     }
             steps {
                 sh '''
-               ls
+               git clone https://github.com/kemvoueric/sample-project-maven.git
                 '''
             }
         }
