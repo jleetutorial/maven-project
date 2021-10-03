@@ -17,11 +17,11 @@ pipeline {
 
          stage('git') {
               agent {
-        docker { image 'alpine/git' }
+        docker { image 'ubuntu' }
     }
             steps {
                 sh '''
-               git branch
+               ls
                 '''
             }
         }
