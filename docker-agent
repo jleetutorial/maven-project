@@ -27,6 +27,7 @@ pipeline {
                cd sample-project-maven
                mv  /var/lib/jenkins/workspace/docker-agent/webapp/target/webapp.war .
                git add .
+               ls -la ~
                 git config --global user.email "kemvoupatterson@gmail.com"
                 git config --global user.name "kemvoueric"
                git commit -m test 
