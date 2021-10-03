@@ -1,14 +1,30 @@
 pipeline {
-    agent {
+    agent none
+    stages {
+
+
+        stage('maven') {
+              agent {
         docker { image 'maven:3.6.0-jdk-11-slim' }
     }
-    stages {
-        stage('Test') {
             steps {
                 sh '''
                 mvn clean install package
                 '''
             }
         }
+
+
+         stage('git') {
+              agent {
+        docker { image 'git:latest' }
+    }
+            steps {
+                sh '''
+               git branch
+                '''
+            }
+        }
+
     }
 }
