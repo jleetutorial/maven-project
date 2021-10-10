@@ -2,9 +2,9 @@
 <html>
 <body>
 
-<h1>My First Heading</h1>
+<h1>Get the Devops AWS LINUX knowleadge first and big money will follow</h1>
 
-<p>My first paragraph.</p>
+<p>yup that is true.</p>
 
 </body>
 </html>
