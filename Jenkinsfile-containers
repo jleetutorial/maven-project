@@ -23,7 +23,7 @@ pipeline {
           }
             steps {
                 sh '''
-                git clone https://github.com/kemvoueric/admin-starter-tomcat.git
+                git clone https://github.com/leonardtia1/devops_addressbook.git
                 
                 '''
             }
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sh '''
                 ls
-               cd  admin-starter-tomcat
+               cd  devops_addressbook
                 mvn clean install package
                  sleep 5
             '''
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh '''
               
-                cd admin-starter-tomcat
+                cd devops_addressbook
                sudo docker build -t tomcat-image:${BUILD_NUMBER} .
                  
             '''
