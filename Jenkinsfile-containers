@@ -23,8 +23,8 @@ pipeline {
           }
             steps {
                 sh '''
-                git clone https://github.com/adminfaces/admin-starter-tomcat.git
-                sleep 5
+                git clone https://github.com/kemvoueric/admin-starter-tomcat.git
+                
                 '''
             }
         }
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sh '''
                 ls
-                cd maven-project
+               cd  admin-starter-tomcat
                 mvn clean install package
                  sleep 5
             '''
@@ -66,7 +66,7 @@ pipeline {
             steps {
                 sh '''
               
-               sudo docker rm -f $(sudo docker ps -aq)
+               sudo docker  rm -f $(sudo docker ps -aq)
            
                sudo docker run -itd --name tomcat-${BUILD_NUMBER} -p 85:8080  tomcat-image:${BUILD_NUMBER} 
                 sudo docker ps   
