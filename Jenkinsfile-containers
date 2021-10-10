@@ -23,7 +23,7 @@ pipeline {
           }
             steps {
                 sh '''
-                git clone https://github.com/leonardtia1/devops_addressbook.git
+                git clone https://github.com/kemvoueric/devops_addressbook.git
                 
                 '''
             }
