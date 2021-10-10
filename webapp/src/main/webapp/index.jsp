@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h1>Getvscvsfvgsvgsvdscvcbvcbfbvfsgbvsvbggdsvdsvxz cxbfbfg the Devops AWS LINUX knowleadge first and big money will follow, for sure we are working very hard to get there right Willy?</h1>
+<h1>willy loves devops</h1>
 
 <p>yup that is true.</p>
 
