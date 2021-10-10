@@ -23,7 +23,7 @@ pipeline {
           }
             steps {
                 sh '''
-                git clone https://github.com/kemvoueric/maven-project.git
+                git clone https://github.com/adminfaces/admin-starter-tomcat.git
                 sleep 5
                 '''
             }
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh '''
               
-                cd maven-project
+                cd admin-starter-tomcat
                sudo docker build -t tomcat-image:${BUILD_NUMBER} .
                  
             '''
