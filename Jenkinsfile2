@@ -37,10 +37,48 @@ pipeline {
 
 
 
+         stage("Building docker images tomcat") {
+           agent { label 'master'} 
+     steps {
+
+              sh '''
+              sudo docker login ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+              sudo docker build -t ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
+
+              '''
+            
+        }
+    }
+
+
+      stage("Pushing images to nexus") { 
+           agent { label 'master'} 
+     steps {
+              sh '''
+              sudo docker login ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+              sudo docker push ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
+              '''
+        }
+    }
+      
 
 
 
   }
+
+     post {
+   
+    unstable {
+      slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+    failure {
+      slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+}
+
+
+
 }
 
 
