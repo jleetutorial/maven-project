@@ -1,33 +1,69 @@
-pipeline{
-agent none
-    stages{
-   
-
-
-        stage("maven clean") {
-             agent {         
+pipeline {
+  agent none
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '20'))
+    disableConcurrentBuilds()
+    timeout (time: 10, unit: 'MINUTES')
+    timestamps()
+  }
+  stages {
+    stage('Build') {
+          agent {         
        docker {          
-         image 'maven:3.5.0'         
+         image 'maven'         
             }       
           }
 
-            steps{
+      steps {
+         sh 'mvn clean'
+      }
+    }
 
-                    sh 'mvn clean'
-                    sh 'mvn install'
-                 
+
+    stage('test') {
+      agent {
+        docker { image 'golang:1.15' }
+      }
+   
+      steps {
+        sh 'mvn install'
+      }
+    }
+
+
+
+        stage("SonarQube analysis") { 
+        agent { label 'master'}       
+     steps {
+              withSonarQubeEnv('Sonar') {
+                sh 'mvn clean  sonar:sonar'
             }
+            
         }
+    }
 
 
-        stage("maven sonar") {
-            agent { label 'master'}
+
+  stage('SonarQube analysis') {
+            agent{ docker { image 'sonarsource/sonar-scanner-cli:4.4' }  }
+               environment {
+        CI = 'true'
+        scannerHome = tool 'Sonar'
+    }
             steps{
-                withSonarQubeEnv('sonarqube')  {
-                    sh 'mvn sonar:sonar -Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000  -Dsonarsonar.login=admin -Dsonar.password=abc123 '
+                withSonarQubeEnv('Sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
-    }
+
+
+
+
+  }
 }
+
+
+
+///////////////////////////////////replaced with docker agent above///////////////////////////
 
