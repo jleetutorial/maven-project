@@ -1,48 +1,33 @@
-pipeline {
-    agent any
-    stages {
-       
-        stage('SonarQube analysis 1') {
-            agent {         
+pipeline{
+agent none
+    stages{
+   
+
+
+        stage("maven clean") {
+             agent {         
        docker {          
          image 'maven:3.5.0'         
             }       
           }
-            environment {
-    SCANNER_HOME = tool 'sonarqube'
-    ORGANIZATION = "igorstojanovski-github"
-    PROJECT_NAME = "igorstojanovski_jenkins-pipeline-as-code"
-    Dsonar.login=admin
-    Dsonar.password=abc123
-    Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000
-     Dsonar.projectKey=maven-project
-    Dsonar.projectName=maven-project
-    Dsonar.projectVersion=1.0
-Dsonar.sources=.
-Dsonar.language=java
-Dsonar.java.binaries=.
-  }
-  steps {
-    withDsonarQubeEnv('DsonarCloudOne') {
-        sh '''
-         "${scannerHome}/bin/sonar-scanner"
-        
-        -Dsonar.login=admin
--Dsonar.password=abc123
--Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000
--Dsonar.projectKey=maven-project
--Dsonar.projectName=maven-project
--Dsonar.projectVersion=1.0
--Dsonar.sources=.
--Dsonar.language=java
--Dsonar.java.binaries=.
-'''
+
+            steps{
+
+                    sh 'mvn clean'
+                    sh 'mvn install'
+                 
+            }
         }
-   
-        stage("Quality Gate 2") {
-            steps {
-                waitForQualityGate abortPipeline: true
+
+
+        stage("maven sonar") {
+            agent { label 'master'}
+            steps{
+                withMaven() {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000  -Dsonarsonar.login=admin -Dsonar.password=abc123 '
+                }
             }
         }
     }
 }
+
