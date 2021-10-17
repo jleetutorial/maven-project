@@ -6,20 +6,13 @@ pipeline {
 
    
     stage('SonarQube analysis') {
-  environment {
-    SCANNER_HOME = tool 'sonarqube'
-    ORGANIZATION = "pipeline"
-    PROJECT_NAME = "pipeline"
-  }
-  steps {
-    withSonarQubeEnv('sonarqube') {
-        sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
-        -Dsonar.java.binaries=build/classes/java/ \
-        -Dsonar.projectKey=$PROJECT_NAME \
-        -Dsonar.sources=.'''
-    }
-  }
-}
+            steps {
+                def scannerHome = tool 'sonarqube'
+                withSonarQubeEnv('sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
 
 
 
