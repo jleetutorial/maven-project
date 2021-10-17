@@ -20,17 +20,6 @@ pipeline {
     }
 
 
-    stage('test') {
-      agent {
-        docker { image 'maven' }
-      }
-   
-      steps {
-        sh 'mvn clean install package'
-      }
-    }
-
-
 
         stage("SonarQube test") { 
         agent { label 'master'}       
