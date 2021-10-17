@@ -6,17 +6,20 @@ pipeline {
 
    
     stage('SonarQube analysis') {
-            agent{ docker { image 'sonarsource/sonar-scanner-cli:4.4' }  }
-               environment {
-        CI = 'true'
-        scannerHome = tool 'sonarqube'
+  environment {
+    SCANNER_HOME = tool 'sonarqube'
+    ORGANIZATION = "pipeline"
+    PROJECT_NAME = "pipeline"
+  }
+  steps {
+    withSonarQubeEnv('sonarqube') {
+        sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+        -Dsonar.java.binaries=build/classes/java/ \
+        -Dsonar.projectKey=$PROJECT_NAME \
+        -Dsonar.sources=.'''
     }
-            steps{
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+  }
+}
 
 
 
