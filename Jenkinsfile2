@@ -7,7 +7,9 @@ pipeline {
     timestamps()
   }
   stages {
-    stage('Build') {
+
+
+    stage('maven clean') {
           agent {         
        docker {          
          image 'maven'         
@@ -35,6 +37,18 @@ pipeline {
         }
     }
 
+      
+      stage('maven Build') {
+          agent {         
+       docker {          
+         image 'maven'         
+            }       
+          }
+
+      steps {
+         sh 'mvn clean install package'
+      }
+    }
 
 
          stage("Building docker images tomcat") {
