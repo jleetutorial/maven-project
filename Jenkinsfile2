@@ -8,9 +8,35 @@ pipeline {
          image 'maven:3.5.0'         
             }       
           }
-            steps {
-                sh 'mvn clean package sonar:sonar'
-            }
+            environment {
+    SCANNER_HOME = tool 'sonarqube'
+    ORGANIZATION = "igorstojanovski-github"
+    PROJECT_NAME = "igorstojanovski_jenkins-pipeline-as-code"
+    Dsonar.login=admin
+    Dsonar.password=abc123
+    Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000
+     Dsonar.projectKey=maven-project
+    Dsonar.projectName=maven-project
+    Dsonar.projectVersion=1.0
+Dsonar.sources=.
+Dsonar.language=java
+Dsonar.java.binaries=.
+  }
+  steps {
+    withDsonarQubeEnv('DsonarCloudOne') {
+        sh '''
+         "${scannerHome}/bin/sonar-scanner"
+        
+        -Dsonar.login=admin
+-Dsonar.password=abc123
+-Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000
+-Dsonar.projectKey=maven-project
+-Dsonar.projectName=maven-project
+-Dsonar.projectVersion=1.0
+-Dsonar.sources=.
+-Dsonar.language=java
+-Dsonar.java.binaries=.
+'''
         }
    
         stage("Quality Gate 2") {
