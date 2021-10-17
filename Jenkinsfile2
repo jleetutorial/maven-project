@@ -32,7 +32,7 @@ pipeline {
 
 
 
-        stage("SonarQube analysis") { 
+        stage("SonarQube test") { 
         agent { label 'master'}       
      steps {
               withSonarQubeEnv('Sonar') {
