@@ -22,7 +22,7 @@ pipeline {
 
     stage('test') {
       agent {
-        docker { image 'golang:1.15' }
+        docker { image 'maven' }
       }
    
       steps {
@@ -63,7 +63,4 @@ pipeline {
   }
 }
 
-
-
-///////////////////////////////////replaced with docker agent above///////////////////////////
 
