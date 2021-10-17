@@ -23,7 +23,7 @@ agent none
         stage("maven sonar") {
             agent { label 'master'}
             steps{
-                withMaven() {
+                withSonarQubeEnv('sonarqube')  {
                     sh 'mvn sonar:sonar -Dsonar.host.url=http://ec2-35-172-180-134.compute-1.amazonaws.com:9000  -Dsonarsonar.login=admin -Dsonar.password=abc123 '
                 }
             }
