@@ -1,130 +1,22 @@
 pipeline {
-   agent none
-
-   stages {  
-
-
-   
-    stage("SonarQube analysis") {       
-     agent { label 'master'} 
-     steps {
-              withSonarQubeEnv('sonarqube') {
-                sh 'mvn clean  sonar:sonar'
+    agent any
+    stages {
+       
+        stage('SonarQube analysis 1') {
+            agent {         
+       docker {          
+         image 'maven:3.5.0'         
+            }       
+          }
+            steps {
+                sh 'mvn clean package sonar:sonar'
             }
-            
         }
-    }
-
-
-
-     stage("Quality Gate") {
-          agent { label 'master'}   
-     steps {
-              timeout(time: 1, unit: 'HOURS') {
+   
+        stage("Quality Gate 2") {
+            steps {
                 waitForQualityGate abortPipeline: true
             }
         }
     }
-
-
-
-
-
-    stage('Maven build') {
-      agent {         
-       docker {  image 'maven:3.5.0'  }       
-          } 
-
-          steps {
-                sh 'mvn clean install package'
-            }
-
-        }
-
-
-
-    
-    
- 
-     stage("Building docker images tomcat") {
-           agent { label 'master'} 
-     steps {
-
-              sh '''
-              sudo docker login ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker build -t ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
-
-              '''
-            
-        }
-    }        
-          
-     stage("Pushing images to nexus") { 
-           agent { label 'master'} 
-     steps {
-              sh '''
-              sudo docker login ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker push ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
-              '''
-        }
-    }
-          
-     stage("deploying to tomcat server") { 
-           agent { label 'master'} 
-     steps {
-              sh '''
-              sudo docker rm -f tomcat || true 
-              sudo docker run -itd --name tomcat  -p  85:8080 ec2-34-216-22-192.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
-              '''
-        }
-    }
-      stage("build httpd image") { 
-            agent { label 'master'} 
-     steps {
-              sh '''
-           sudo docker login sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
-              sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
-              '''
-        }
-    }
-     
-
-
-    stage("push to dsockerhub") { 
-          agent { label 'master'} 
-     steps {
-              sh '''
-           sudo docker login sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
-              sudo docker push devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
-              '''
-        }
-    }
-     
-    stage("deploy httpd") { 
-          agent { label 'master'} 
-     steps {
-              sh '''
-              sudo docker rm -f httpd || true 
-              sudo docker run -itd -p 8090:80 devopseasylearning2021/pipeline:${BUILD_NUMBER}
-              '''
-        }
-    }
-
-
-   }   
-
-
-
-     post {
-   
-    unstable {
-      slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-    }
-
-    failure {
-      slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-    }
-}
-
-
 }
