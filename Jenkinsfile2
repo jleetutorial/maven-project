@@ -78,6 +78,37 @@ pipeline {
 
 
 
+     stage("Building docker images httpd") {
+           agent { label 'master'} 
+     steps {
+
+              sh '''
+              sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
+              sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
+
+              '''
+            
+        }
+    }
+
+
+      stage("Pushing images to dockerhub") { 
+           agent { label 'master'} 
+     steps {
+              sh '''
+              sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
+              sudo docker push devopseasylearning2021/pipeline:${BUILD_NUMBER}
+              '''
+        }
+    }
+     
+
+
+
+
+
+
+
   }
 
      post {
@@ -94,5 +125,3 @@ pipeline {
 
 
 }
-
-
