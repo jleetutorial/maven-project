@@ -22,7 +22,11 @@ pipeline {
 
 
         stage("SonarQube test") { 
-        agent { label 'master'}       
+          agent {         
+       docker {          
+         image 'maven'         
+            }       
+          }   
      steps {
               withSonarQubeEnv('Sonar') {
                 sh 'mvn clean  sonar:sonar'
