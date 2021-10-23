@@ -13,7 +13,7 @@ services:
          CITY: Kathleen
          COUNTRY: U.S.A
        ports: 
-        - 95:8080
+        - 9595:8080
            
   
       
@@ -28,7 +28,7 @@ services:
        container_name: httpd
        restart: always  
        ports:
-        - 70:80
+        - 85:80
        environment:
          CITY: Kathleen
          COUNTRY: U.S.A
