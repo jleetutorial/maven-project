@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  become_user: jenkins
+  become: yes
   tasks:
          - name: update all package
            apt:
@@ -10,6 +10,14 @@
          - name: deploy compose
            command: bash deploy.sh
          
+         - name: checking
+           shell: id
+           register: klm
+
+      
+         - debug: 
+               msg: "value of klm is: {{ klm.stdout_lines }}"
+               
          - name: display
            shell: docker-compose ps
            register: xyz
