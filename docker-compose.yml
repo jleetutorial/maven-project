@@ -1,7 +1,7 @@
 version : "3.3"
 services:
   tomcat:
-       image: ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
+       image: ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:${{BUILD_NUMBER}}
        expose:
         - 90
         - 100
@@ -21,7 +21,7 @@ services:
 ###################################################################################################################
 
   httpd:
-       image: devopseasylearning2021/pipeline:${BUILD_NUMBER}
+       image: devopseasylearning2021/pipeline:${{BUILD_NUMBER}}
        expose:
         - 80
         - 90
