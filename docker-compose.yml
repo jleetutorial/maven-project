@@ -1,1 +1,34 @@
-vsdgvdwsg
+version : "3.3"
+services:
+  tomcat:
+       image: ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
+       expose:
+        - 90
+        - 100
+        - 8080
+       container_name: tomcat
+       restart: always
+       
+       environment:
+         CITY: Kathleen
+         COUNTRY: U.S.A
+       ports: 
+        - 95:8080
+           
+  
+      
+
+###################################################################################################################
+
+  httpd:
+       image: devopseasylearning2021/pipeline:${BUILD_NUMBER}
+       expose:
+        - 80
+        - 90
+       container_name: httpd
+       restart: always  
+       ports:
+        - 70:80
+       environment:
+         CITY: Kathleen
+         COUNTRY: U.S.A
