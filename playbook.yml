@@ -12,7 +12,7 @@
          
          - name: display
            shell: docker-compose ps
-            register: xyz
+           register: xyz
 
       
          - debug: 
