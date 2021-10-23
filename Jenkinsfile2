@@ -108,6 +108,7 @@ pipeline {
            agent { label 'master'} 
      steps {
               sh '''
+              ls -l
               ansible-playbook playbook.yml
               '''
         }
