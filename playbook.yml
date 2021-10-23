@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
- # become: yes
+  become: yes
+  become_user: jenkins
   tasks:
          - name: update all package
            apt:
