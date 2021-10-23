@@ -104,7 +104,14 @@ pipeline {
      
 
 
-
+    stage("deploy with ansible") { 
+           agent { label 'master'} 
+     steps {
+              sh '''
+              ansible-playbook playbook.yml
+              '''
+        }
+    }
 
 
 
