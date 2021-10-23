@@ -8,7 +8,7 @@
                state: latest
          
          - name: deploy compose
-           shell: docker-compose up -d
+           shell: docker-compose -f /var/lib/jenkins/workspace/maven-project/docker-compose.yml up -d
          
          - name: display
            shell: docker-compose ps
