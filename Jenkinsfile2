@@ -109,6 +109,7 @@ pipeline {
      steps {
               sh '''
               ls -l
+              pwd
               ansible-playbook playbook.yml
               '''
         }
