@@ -3,15 +3,15 @@
   become: yes
   tasks:
          - name: update all package
-            apt:
-            name: '*'
-            state: latest
+           apt:
+               name: '*'
+               state: latest
          
          - name: deploy compose
-            shell: docker-compose up -d
+           shell: docker-compose up -d
          
          - name: display
-            shell: docker-compose ps
+           shell: docker-compose ps
             register: xyz
 
       
