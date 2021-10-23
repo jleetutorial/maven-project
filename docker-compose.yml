@@ -28,7 +28,7 @@ services:
        container_name: httpd
        restart: always  
        ports:
-        - 85:80
+        - 8585:80
        environment:
          CITY: Kathleen
          COUNTRY: U.S.A
