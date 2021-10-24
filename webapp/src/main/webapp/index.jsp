@@ -111,7 +111,7 @@
         </div>
       </div>
       <footer>
-        Made by Liyas Thomas | <a href="https://github.com/liyasthomas/parkinglot">GitHub</a>
+        Made Eric Kemvou | <a href="https://github.com/liyasthomas/parkinglot">GitHub</a>
       </footer>
     </div>
   </div>
