@@ -1,103 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Prime School: Student Form</title>
-    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="SFI.css" media="screen">
-
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-
-<body class="detailbody" style="background-color:#1a0008;">
-
-    <h1 class="hdetail">Prime School</h1>
-    <div style="width: 80%; margin: auto;">
-        <br>
-
-
-        <br><br>
-        <div class="card">
-            <legend class="legenddt">STUDENT INFORMATION CARD</legend>
-            <br>
-            <div style="padding: 15px 50px 40px 40px;">
-                <fieldset>
-                    <div class="row" style="margin-left:0;">
-                        <div class="legendd"><u>Personal Information</u></div>
-                        <br>
-                        <div class="col-md-5"><img class="img-fluid rounded" id="imgs" src=""
-                                style="height: 210px; width: 80%; display: block;"></div>
-                        <div class="col-md-7" style="padding-left: 0;">
-                            <br>
-                            <div id="First_name" class="dfont"> First Name:&nbsp; </div>
-                            <div id="Middle_name" class="dfont"> Middle Name:&nbsp; </div>
-                            <div id="Last_name" class="dfont"> Last Name:&nbsp; </div>
-                            <div class="row">
-                                <ul class="list-inline col-md-8" style="margin-bottom:0;">
-                                    <li class="dfont" id="Age" style="padding-right: 0;"> Age:&nbsp; </li>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <li class="dfont" id="Gender"> Gender:&nbsp; </li>
-                                </ul>
-
-                                <div class=" col-md-4"></div>
-                            </div>
-                            <div id="Email" class="dfont"> Email:&nbsp;</div>
-
-                        </div>
-                    </div>
-                </fieldset>
-                <br><br>
-                <fieldset>
-                    <div class="legendd"><u>Academic Information</u></div>
-                    <p id="side">
-                        <div id="Class" class="dfont"> Class:&nbsp;</div>
-                        <div id="Grade" class="dfont"> Overall Grade:&nbsp;</div>
-                        <div id="Remark" class="dfont"> Remark:&nbsp;</div>
-                        <div id="Subject" class="dfont"> Subjects:&nbsp;</div>
-                </fieldset>
-            </div>
-        </div>
+<div class="wrapper">
+    <div class="title">
+      Registration Form
     </div>
-    <br><br>
-    <br>
-    <div class="moove">
-        <button class="btn btn-danger btn-sm" style="float: right;"> <a href="list.html" class="nav">Return to Form
-                List</a></button>
-        <br><br>
-        <button class="btn btn-danger btn-sm"> <a href="SFI.html" class="nav">Return to Student Form
-                Registration</a></button>
+    <div class="form">
+       <div class="inputfield">
+          <label>First Name</label>
+          <input type="text" class="input">
+       </div>  
+        <div class="inputfield">
+          <label>Last Name</label>
+          <input type="text" class="input">
+       </div>  
+       <div class="inputfield">
+          <label>Password</label>
+          <input type="password" class="input">
+       </div>  
+      <div class="inputfield">
+          <label>Confirm Password</label>
+          <input type="password" class="input">
+       </div> 
+        <div class="inputfield">
+          <label>Gender</label>
+          <div class="custom_select">
+            <select>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+       </div> 
+        <div class="inputfield">
+          <label>Email Address</label>
+          <input type="text" class="input">
+       </div> 
+      <div class="inputfield">
+          <label>Phone Number</label>
+          <input type="text" class="input">
+       </div> 
+      <div class="inputfield">
+          <label>Address</label>
+          <textarea class="textarea"></textarea>
+       </div> 
+      <div class="inputfield">
+          <label>Postal Code</label>
+          <input type="text" class="input">
+       </div> 
+      <div class="inputfield terms">
+          <label class="check">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          <p>Agreed to terms and conditions</p>
+       </div> 
+      <div class="inputfield">
+        <input type="submit" value="Register" class="btn">
+      </div>
     </div>
-
-
-
+</div>	
+	
 </body>
-
-<script>
-    //get id of button clicked on on previous page
-    var myString = location.search;
-    var uniId = myString.substr(1);
-
-    //cheack which form has the same id and displays the details
-    var arrlocalstorage = JSON.parse(localStorage.getItem("form"));
-    for (var ar = 0; ar < arrlocalstorage.length; ar++) {
-        var arr = (arrlocalstorage[ar]).id;
-        if (arr == uniId) {
-            document.getElementById("imgs").src = arrlocalstorage[ar].img;
-            document.getElementById("First_name").innerHTML += arrlocalstorage[ar].firstname;
-            document.getElementById("Middle_name").innerHTML += (arrlocalstorage[ar]).middlename;
-            document.getElementById("Last_name").innerHTML += (arrlocalstorage[ar]).lastname;
-            document.getElementById("Gender").innerHTML += (arrlocalstorage[ar]).gender;
-            document.getElementById("Grade").innerHTML += (arrlocalstorage[ar]).grade;
-            document.getElementById("Subject").innerHTML += (arrlocalstorage[ar]).subjects;
-            document.getElementById("Remark").innerHTML += (arrlocalstorage[ar]).remark;
-            document.getElementById("Email").innerHTML += (arrlocalstorage[ar]).email;
-            document.getElementById("Class").innerHTML += (arrlocalstorage[ar]).class;
-            document.getElementById("Age").innerHTML += (arrlocalstorage[ar]).age;
-            { break; }
-        }
-    }
-
-</script>
-
 </html>
