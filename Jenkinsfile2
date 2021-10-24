@@ -65,8 +65,8 @@ pipeline {
      steps {
 
               sh '''
-              sudo docker login ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker build -t ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
+              sudo docker login west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+              sudo docker build -t west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
 
               '''
             
@@ -78,8 +78,8 @@ pipeline {
            agent { label 'master'} 
      steps {
               sh '''
-              sudo docker login ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker push ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
+              sudo docker login  west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+              sudo docker push west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
               '''
         }
     }
