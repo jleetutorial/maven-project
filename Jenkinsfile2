@@ -1,147 +1,147 @@
 pipeline {
-  agent none
-    options {
-    buildDiscarder(logRotator(numToKeepStr: '20'))
-    disableConcurrentBuilds()
-    timeout (time: 10, unit: 'MINUTES')
-    timestamps()
-  }
-  stages {
-
-
-    stage('maven clean') {
-          agent {         
-       docker {          
-         image 'maven'         
-            }       
-          }
-
-      steps {
-         sh 'mvn clean'
-      }
+    agent none
+      options {
+      buildDiscarder(logRotator(numToKeepStr: '20'))
+      disableConcurrentBuilds()
+      timeout (time: 10, unit: 'MINUTES')
+      timestamps()
     }
-
-
-
-        stage("SonarQube test") { 
-          agent {         
-       docker {          
-         image 'maven'         
-            }       
-          }   
-     steps {
-              withSonarQubeEnv('Sonar') {
-                sh 'mvn clean  sonar:sonar'
+    stages {
+  
+  
+      stage('maven clean') {
+            agent {         
+         docker {          
+           image 'maven'         
+              }       
             }
-            
+  
+        steps {
+           sh 'mvn clean'
         }
-    }
-     
-     
-     //stage("Quality Gate") {
-         //   steps {
-          //    timeout(time: 3, unit: 'MINUTES') {
-           //     waitForQualityGate abortPipeline: true
-           //   }
-          //  }
-         // }
-          
-      
-      stage('maven Build') {
-          agent {         
-       docker {          
-         image 'maven:3.8.3-openjdk-11'         
-            }       
-          }
-
-      steps {
-         sh 'mvn clean install package'
       }
-    }
-
-
-         stage("Building docker images tomcat") {
-           agent { label 'master'} 
-     steps {
-
-              sh '''
-              sudo docker login west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker build -t west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
-
-              '''
+  
+  
+  
+          stage("SonarQube test") { 
+            agent {         
+         docker {          
+           image 'maven'         
+              }       
+            }   
+       steps {
+                withSonarQubeEnv('Sonar') {
+                  sh 'mvn clean  sonar:sonar'
+              }
+              
+          }
+      }
+       
+       
+       //stage("Quality Gate") {
+           //   steps {
+            //    timeout(time: 3, unit: 'MINUTES') {
+             //     waitForQualityGate abortPipeline: true
+             //   }
+            //  }
+           // }
             
+        
+        stage('maven Build') {
+            agent {         
+         docker {          
+           image 'maven:3.8.3-openjdk-11'         
+              }       
+            }
+  
+        steps {
+           sh 'mvn clean install package'
         }
+      }
+  
+  
+           stage("Building docker images tomcat") {
+             agent { label 'master'} 
+       steps {
+  
+                sh '''
+                sudo docker login ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+                sudo docker build -t ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER} . 
+  
+                '''
+              
+          }
+      }
+  
+  
+        stage("Pushing images to nexus") { 
+             agent { label 'master'} 
+       steps {
+                sh '''
+                sudo docker login  ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000 -u admin  -p abc123
+                sudo docker push ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
+                '''
+          }
+      }
+        
+  
+  
+  
+       stage("Building docker images httpd") {
+             agent { label 'master'} 
+       steps {
+  
+                sh '''
+                sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
+                sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
+  
+                '''
+              
+          }
+      }
+  
+  
+        stage("Pushing images to dockerhub") { 
+             agent { label 'master'} 
+       steps {
+                sh '''
+                sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
+                sudo docker push devopseasylearning2021/pipeline:${BUILD_NUMBER}
+                '''
+          }
+      }
+       
+  
+  
+      stage("deploy with ansible") { 
+             agent { label 'master'} 
+       steps {
+                sh '''
+                ls -l
+                pwd
+                ansible-playbook playbook.yml
+                '''
+          }
+      }
+  
+  
+  
+  
     }
-
-
-      stage("Pushing images to nexus") { 
-           agent { label 'master'} 
-     steps {
-              sh '''
-              sudo docker login  west-2.compute.amazonaws.com:5000 -u admin  -p abc123
-              sudo docker push west-2.compute.amazonaws.com:5000/pipeline:${BUILD_NUMBER}
-              '''
-        }
-    }
-      
-
-
-
-     stage("Building docker images httpd") {
-           agent { label 'master'} 
-     steps {
-
-              sh '''
-              sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
-              sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
-
-              '''
-            
-        }
-    }
-
-
-      stage("Pushing images to dockerhub") { 
-           agent { label 'master'} 
-     steps {
-              sh '''
-              sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
-              sudo docker push devopseasylearning2021/pipeline:${BUILD_NUMBER}
-              '''
-        }
-    }
+  
+       post {
      
-
-
-    stage("deploy with ansible") { 
-           agent { label 'master'} 
-     steps {
-              sh '''
-              ls -l
-              pwd
-              ansible-playbook playbook.yml
-              '''
-        }
-    }
-
-
-
-
+      unstable {
+        slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+     success {
+        slackSend (channel: '#jenkins', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+      failure {
+        slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
   }
-
-     post {
-   
-    unstable {
-      slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-    }
-   success {
-      slackSend (channel: '#jenkins', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-    }
-    failure {
-      slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-    }
-}
-
-
-
-}
+  
+  
+  
+  }
