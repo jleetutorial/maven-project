@@ -1,7 +1,7 @@
 version : "3.3"
 services:
   tomcat:
-       image: ec2-54-184-86-245.us-west-2.compute.amazonaws.com:5000/pipeline:$BUILD_NUMBER
+       image: ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000/pipeline:$BUILD_NUMBER
        expose:
         - 90
         - 100
