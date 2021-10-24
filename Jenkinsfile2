@@ -93,7 +93,7 @@ pipeline {
   
                 sh '''
                 sudo docker login -u  devopseasylearning2021  -p  DevOps2021@
-                sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER} . 
+                sudo docker build -t devopseasylearning2021/pipeline:${BUILD_NUMBER}  -f apache.Dockerfile . 
   
                 '''
               
