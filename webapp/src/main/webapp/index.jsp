@@ -21,7 +21,7 @@
 
   <div class="container">
     <div class="page-header-extended">
-      <h4 class="page-title">Parking lot for Buy me a coffee</h4>
+      <h4 class="page-title">PARKING LOT: welcome to Devops made easy</h4>
     </div>
     <div class="info-table-header-block">
       <input type="text" placeholder="Search vehicles by Registration no, Owner name, Email, Date of allocation, Slot etc." id="member_search" onkeyup="getTableData()">
@@ -111,7 +111,7 @@
         </div>
       </div>
       <footer>
-        Made Eric Kemvou | <a href="https://github.com/liyasthomas/parkinglot">GitHub</a>
+        Made by Eric Kemvou | <a href="https://github.com/liyasthomas/parkinglot">GitHub</a>
       </footer>
     </div>
   </div>
