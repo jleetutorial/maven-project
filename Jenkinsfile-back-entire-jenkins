@@ -1,0 +1,56 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('cleaning the envornment') {
+            steps {
+                sh '''
+                 DATE=$(date "+%Y-%m-%d-%M")
+                mkdir ~/BACKUP || true 
+                rm -rf  ~/BACKUP/* || true 
+               
+                '''
+            }
+        }
+       
+        
+        stage('packaging backup') {
+            steps {
+                sh '''
+                 DATE=$(date "+%Y-%m-%d-%M")
+                cp -r /var/lib/jenkins/jobs  ~/BACKUP
+                mv ~/BACKUP/jobs  ~/BACKUP/jenkins-backup-jobs-$DATE
+                '''
+            }
+        }
+
+ 
+
+       
+        stage('push into s3') {
+            steps {
+                sh '''
+                DATE=$(date "+%Y-%m-%d-%M")
+              aws s3 cp ~/BACKUP/jenkins-backup-jobs-$DATE  s3://jenkins-backup-focus/jenkins-backup-jobs-$DATE  --recursive
+            
+                '''
+            }
+        }
+
+
+    }
+
+    post {
+     
+      unstable {
+        slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE:  No backup made on AWS_S3 '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+     success {
+        slackSend (channel: '#jenkins', color: 'good', message:  "SUCCESS:  all  backup made on AWS_S3 '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+      failure {
+        slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE:  backup made on AWS_S3 '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+  }
+}
