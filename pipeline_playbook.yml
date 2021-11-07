@@ -1,0 +1,30 @@
+---
+- hosts:
+  become: yes
+  tasks:
+     - name: upgrade all VM
+       apt:
+         name: '*'
+       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+     - name: upgrade all VM
+       yum:
+         name: '*'
+       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+     - name: Creates directory
+       file:
+          path: /tmp/pipeline_script
+          state: directory
+
+     - name: Copy pipeline_deploy_script.sh
+        ansible.builtin.copy:
+          src: ./pipeline_deploy_script.sh
+          dest: /tmp/pipeline_script/pipeline_deploy_script.sh
+
+     - name: Copy pipeline_docker-compose.yml
+        ansible.builtin.copy:
+          src: ./pipeline_docker-compose.yml
+          dest: /tmp/pipeline_script/pipeline_docker-compose.yml
+          
+     - name: run script 
+       script: /tmp/pipeline_script/pipeline_deploy_script.sh
