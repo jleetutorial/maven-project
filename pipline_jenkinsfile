@@ -17,5 +17,21 @@ pipeline {
                 sh  'mvn clean'
             }
         }
+
+
+       stage('Sonar Test') {
+            agent {
+                docker{
+                    image 'maven'
+                }
+            }
+            steps {
+                withSonarQubeEnv('Sonar') {
+                 sh  'mvn clean sonar:sonar'
+                }
+                
+            }
+        }
+
     }
 }
