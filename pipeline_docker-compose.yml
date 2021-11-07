@@ -1,0 +1,25 @@
+version: "3"
+services:
+    tomcat:
+       image: ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:$TAG
+       container_name: tomcat
+       ports:
+         - 8085:8080
+    apache:
+        image: devopseasylearning2021/apache:$TAG
+        ports:
+         - 8086:80
+
+    db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
+
+
