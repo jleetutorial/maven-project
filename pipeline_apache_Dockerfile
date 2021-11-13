@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/ubuntu:base
 MAINTAINER DevopsEasyLearning
 RUN apt-get update
 RUN apt-get -y install httpd
