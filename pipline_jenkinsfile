@@ -69,7 +69,7 @@ pipeline {
             steps {
                 sh  '''
                 
-                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/pipeline01:${BUILD_NUMBER} -f pipeline_tomcat_Dockerfile . 
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:${BUILD_NUMBER} -f pipeline_tomcat_Dockerfile . 
                 '''
                 
             }  
