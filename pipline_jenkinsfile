@@ -123,6 +123,7 @@ pipeline {
             steps {
                 sh  '''
                 ansible-playbook pipeline_playbook.yml
+                echo $BUILD_NUMBER
                 '''
                 
             }  
