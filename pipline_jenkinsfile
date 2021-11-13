@@ -38,7 +38,7 @@ pipeline {
        stage('maven build') {
             agent {
                 docker{
-                    image 'maven'
+                    image 'maven:3-ibmjava-8-alpine'
                 }
             }
             steps {
