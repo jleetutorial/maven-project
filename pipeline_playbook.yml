@@ -17,12 +17,12 @@
           state: directory
 
      - name: Copy pipeline_deploy_script.sh
-        ansible.builtin.copy:
+       ansible.builtin.copy:
           src: ./pipeline_deploy_script.sh
           dest: /tmp/pipeline_script/pipeline_deploy_script.sh
 
      - name: Copy pipeline_docker-compose.yml
-        ansible.builtin.copy:
+       ansible.builtin.copy:
           src: ./pipeline_docker-compose.yml
           dest: /tmp/pipeline_script/pipeline_docker-compose.yml
           
