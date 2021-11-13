@@ -111,7 +111,7 @@ pipeline {
 
             steps {
                 sh  '''
-                docker push ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:${BUILD_NUMBER}
+                docker push devopseasylearning2021/apache:${BUILD_NUMBER}
                 '''
                 
             }  
