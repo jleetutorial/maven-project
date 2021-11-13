@@ -69,7 +69,7 @@ pipeline {
             steps {
                 sh  '''
                 
-                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/pipeline01:BUILD_TAG -f pipeline_tomcat_Dockerfile . 
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/pipeline01:${BUILD_TAG } -f pipeline_tomcat_Dockerfile . 
                 '''
                 
             }  
@@ -82,7 +82,7 @@ pipeline {
 
             steps {
                 sh  '''
-                docker push  ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:BUILD_TAG 
+                docker push  ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:${BUILD_TAG } 
                 '''
                 
             }  
@@ -96,7 +96,7 @@ pipeline {
 
             steps {
                 sh  '''
-                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:BUILD_TAG -f pipeline_apache_Dockerfile . 
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:${BUILD_TAG } -f pipeline_apache_Dockerfile . 
                 '''
                 
             }  
@@ -110,7 +110,7 @@ pipeline {
 
             steps {
                 sh  '''
-                docker push ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:BUILD_TAG 
+                docker push ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:${BUILD_TAG } 
                 '''
                 
             }  
