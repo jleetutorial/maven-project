@@ -31,6 +31,9 @@ pipeline {
                 }
                 
             }
+            
+            
+            
         }
 
 
@@ -130,4 +133,18 @@ pipeline {
             }  
         }
     }
+    
+    post {
+     
+      unstable {
+        slackSend (channel: '#jenkins', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+     success {
+        slackSend (channel: '#jenkins', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+      failure {
+        slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+  }
+  
 }
