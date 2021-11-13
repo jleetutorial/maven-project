@@ -1,5 +1,5 @@
 ---
-- hosts:
+- hosts: localhost 
   become: yes
   tasks:
      - name: upgrade all VM
