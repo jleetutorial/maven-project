@@ -55,7 +55,8 @@ pipeline {
             steps {
                 sh  '''
                 docker login ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000 -u admin  -p admin
-                '''
+                docker login -u devopseasylearning2021 -p DevOps2021@
+                 '''
                 
             }  
         }
@@ -96,7 +97,7 @@ pipeline {
 
             steps {
                 sh  '''
-                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:${BUILD_NUMBER} -f pipeline_apache_Dockerfile . 
+                docker build -t devopseasylearning2021/apache:${BUILD_NUMBER} -f pipeline_apache_Dockerfile . 
                 '''
                 
             }  
