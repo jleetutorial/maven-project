@@ -1,9 +1,11 @@
-#FROM ubuntu:latest
-FROM ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/ubuntu:base
-MAINTAINER DevopsEasyLearning
-RUN apt-get update
-RUN apt-get -y install httpd
-RUN rm -rf /var/www/html/*
-COPY index.html /var/www/html/
+
+FROM ubuntu:18.04
+RUN apt-get update && \
+    apt-get install -y apache2 apache2-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/www/html/* 
+COPY  index.html  /var/www/html/
 EXPOSE 80
-CMD [“/usr/sbin/httpd”, “-D”, “FOREGROUND”]
+ENTRYPOINT ["apache2ctl"]
+CMD ["-DFOREGROUND"]
