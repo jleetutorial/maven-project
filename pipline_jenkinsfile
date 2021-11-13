@@ -46,7 +46,8 @@ pipeline {
             }
         }
 
-       stage('Build tomcat image') {
+
+         stage('Verifying credential') {
             agent {
                 label 'pipeline'
             }
@@ -54,10 +55,65 @@ pipeline {
             steps {
                 sh  '''
                 docker login ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000 -u admin  -p admin
+                '''
+                
+            }  
+        }
+
+
+       stage('Build  tomcat image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                
                 docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/pipeline01:BUILD_TAG -f pipeline_tomcat_Dockerfile . 
                 '''
                 
+            }  
+        }
+       
+        stage('pushing  tomcat image') {
+            agent {
+                label 'pipeline'
             }
+
+            steps {
+                sh  '''
+                docker push  ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:BUILD_TAG 
+                '''
+                
+            }  
+        }
+
+       
+        stage('build httpd image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:BUILD_TAG -f pipeline_apache_Dockerfile . 
+                '''
+                
+            }  
+        }
+
+
+        stage('push  httpd image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker push ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/apache:BUILD_TAG 
+                '''
+                
+            }  
         }
 
     }
