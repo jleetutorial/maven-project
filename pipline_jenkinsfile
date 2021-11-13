@@ -38,7 +38,7 @@ pipeline {
        stage('maven build') {
             agent {
                 docker{
-                    image 'maven:3.8.3-openjdk-11'
+                    image 'maven:latest'
                 }
             }
             steps {
@@ -46,7 +46,19 @@ pipeline {
             }
         }
 
+       stage('Build tomcat image') {
+            agent {
+                label 'pipeline'
+            }
 
+            steps {
+                sh  '''
+                docker login ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000 -u admin  -p admin
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/pipeline01:BUILD_TAG -f pipeline_tomcat_Dockerfile . 
+                '''
+                
+            }
+        }
 
     }
 }
