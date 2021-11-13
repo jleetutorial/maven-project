@@ -1,4 +1,5 @@
-FROM tomcat:8.0-alpine
+#FROM tomcat:8.0-alpine
+FROM ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:8.0-alpine 
 MAINTAINER stephanie
 ADD webapp/target/webapp.war /usr/local/tomcat/webapps/
 EXPOSE 8080
