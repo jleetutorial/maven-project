@@ -1,0 +1,41 @@
+pipeline {
+    agent none
+    stages {
+
+
+        stage('maven') {
+              agent {
+        docker { image 'maven:3.6.0-jdk-11-slim' }
+    }
+            steps {
+                sh '''
+                mvn clean install package
+                '''
+            }
+        }
+
+
+         stage('git') {
+              agent {
+        docker { image 'kemvoueric/ubuntu_java_maven_git:001' }
+    }
+            steps {
+                sh '''
+               ls /var/lib/jenkins/workspace/docker-agent/webapp/target
+               rm -rf sample-project-maven || true
+               git clone https://kemvoueric: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@github.com/kemvoueric/sample-project-maven.git
+               cd sample-project-maven
+               mv  /var/lib/jenkins/workspace/docker-agent/webapp/target/webapp.war .
+               git add .
+               ls -la 
+                
+               git commit -m test 
+               git push https://kemvoueric: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@github.com/kemvoueric/sample-project-maven.git
+
+
+                '''
+            }
+        }
+
+    }
+}

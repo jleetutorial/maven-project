@@ -1,0 +1,150 @@
+pipeline {
+    agent none 
+     options {
+      buildDiscarder(logRotator(numToKeepStr: '20'))
+      disableConcurrentBuilds()
+      timeout (time: 10, unit: 'MINUTES')
+      timestamps()
+    }
+    stages {
+        stage('maven clean') {
+            agent {
+                docker{
+                    image 'maven'
+                }
+            }
+            steps {
+                sh  'mvn clean'
+            }
+        }
+
+
+       stage('Sonar Test') {
+            agent {
+                docker{
+                    image 'maven'
+                }
+            }
+            steps {
+                withSonarQubeEnv('Sonar') {
+                 sh  'mvn clean sonar:sonar'
+                }
+                
+            }
+            
+            
+            
+        }
+
+
+
+       stage('maven build') {
+            agent {
+                docker{
+                    image 'maven:3.8.3-openjdk-11'
+                }
+            }
+            steps {
+                sh  'mvn clean install package'
+            }
+        }
+
+
+         stage('Verifying credential') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker login ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000 -u admin  -p admin
+                docker login -u devopseasylearning2021 -p DevOps2021@
+                 '''
+                
+            }  
+        }
+
+
+       stage('Build  tomcat image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                
+                docker build -t ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:${BUILD_NUMBER} -f pipeline_tomcat_Dockerfile . 
+                '''
+                
+            }  
+        }
+       
+        stage('pushing  tomcat image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker push  ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:${BUILD_NUMBER} 
+                '''
+                
+            }  
+        }
+
+       
+        stage('build httpd image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker build -t devopseasylearning2021/apache:${BUILD_NUMBER} -f pipeline_apache_Dockerfile . 
+                '''
+                
+            }  
+        }
+
+
+        stage('push  httpd image') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                docker push devopseasylearning2021/apache:${BUILD_NUMBER}
+                '''
+                
+            }  
+        }
+        stage('deploying with ansible') {
+            agent {
+                label 'pipeline'
+            }
+
+            steps {
+                sh  '''
+                ansible-playbook pipeline_playbook.yml
+                echo $BUILD_NUMBER
+                '''
+                
+            }  
+        }
+    }
+    
+    post {
+     
+      unstable {
+        slackSend (channel: '#random', color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+     success {
+        slackSend (channel: '#random', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+      failure {
+        slackSend (channel: '#random', color: '#FF0000', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+  }
+  
+}

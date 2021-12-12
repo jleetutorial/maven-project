@@ -1,0 +1,34 @@
+version : "3.3"
+services:
+  tomcat:
+       image: ec2-34-217-177-30.us-west-2.compute.amazonaws.com:5000/pipeline:$BUILD_NUMBER
+       expose:
+        - 90
+        - 100
+        - 8080
+       container_name: tomcat
+       restart: always
+       
+       environment:
+         CITY: Kathleen
+         COUNTRY: U.S.A
+       ports: 
+        - 9595:8080
+           
+  
+      
+
+###################################################################################################################
+
+  httpd:
+       image: devopseasylearning2021/pipeline:$BUILD_NUMBER
+       expose:
+        - 80
+        - 90
+       container_name: httpd
+       restart: always  
+       ports:
+        - 8585:80
+       environment:
+         CITY: Kathleen
+         COUNTRY: U.S.A

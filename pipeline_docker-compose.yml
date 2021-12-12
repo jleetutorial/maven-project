@@ -1,0 +1,16 @@
+version: "3"
+services:
+    tomcat:
+       image: ec2-35-80-161-240.us-west-2.compute.amazonaws.com:5000/tomcat:$BUILD_NUMBER
+       container_name: tomcat
+       expose:
+        - 8080
+       ports:
+         - 8085:8080
+    apache:
+        image: devopseasylearning2021/apache:$BUILD_NUMBER
+        container_name: apache
+        expose:
+        - 80
+        ports:
+         - 8086:80
