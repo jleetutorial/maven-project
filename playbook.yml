@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+         - name: update all package
+           apt:
+               name: '*'
+               state: latest
+               
+         - name: checking
+           shell: id
+           register: klm
+
+      
+         - debug: 
+               msg: "value of klm is: {{ klm.stdout_lines }}"
+               
+         - name: deploy compose
+           command: bash deploy.sh
+         
+         
+               
+         - name: display
+           shell: docker-compose ps
+           register: xyz
+
+      
+         - debug: 
+               msg: "value of xyz is: {{ xyz.stdout_lines }}"
