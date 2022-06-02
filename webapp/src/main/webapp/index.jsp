@@ -13,6 +13,6 @@
         <h1>Hello Roger!</h1>
         <h2>Teste da Integração Contínua</h2>
         <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
-        <p>Teste 22</p>
+        <p>Teste Priscila</p>
     </body>
 </html>
