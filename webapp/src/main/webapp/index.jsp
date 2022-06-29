@@ -11,6 +11,7 @@
 
     <body>
         <h1>Hello Bruno!</h1>
+        <h1>Hello Bruno - Deploy!</h1>
         <h2>Teste da Integração Contínua</h2>
         <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
         <p>Teste Numero 3 - Priscila</p>
