@@ -14,5 +14,6 @@
         <h2>Teste da Integração Contínua</h2>
         <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
         <p>Teste Numero 3 - Priscila</p>
+        <p>Teste Tcharles</p>
     </body>
 </html>
