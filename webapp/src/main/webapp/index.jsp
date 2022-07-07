@@ -16,7 +16,6 @@
         <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
         <p>Teste Numero 3 - Priscila</p>
         <p>Teste Tcharles</p>
-        <p>Luis Aberto</p><p>Luis</p> <!--ljksja-->
-        <p>Alterando o caminho ajustado o jeikisn</p>
+        <p>Luis Aberto</p><p>Luis</p> 
     </body>
 </html>
