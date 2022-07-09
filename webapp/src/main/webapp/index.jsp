@@ -16,7 +16,7 @@
         <p>A sincronização com o servidor github é realizada agora usando o ssh.</p>
         <p>Teste Numero 3 - Priscila</p>
         <p>Teste Tcharles</p>
-        <p>teste 3 tcharles</p>
-        <p>Luis esteve aqui</p>
+        <p>Luis AbertoFleck </p>
+        <p>Luis AbertoFleck 2</p>
     </body>
 </html>
