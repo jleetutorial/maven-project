@@ -17,5 +17,9 @@
         <p>Teste Numero 3 - Priscila</p>
         <p>Teste Tcharles</p>
         <p>Luis AbertoFleck </p>
+<<<<<<< HEAD
+        <p>Luis AbertoFleck 2</p>
+=======
+>>>>>>> b72984bb8e42172aded31337df874d99736da3ad
     </body>
 </html>
