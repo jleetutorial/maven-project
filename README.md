@@ -22,3 +22,5 @@ Different phases in Maven Build Lifecycle -
 - verify = Run any chacks on results of integration tests to ensure quality criteria are met
 - install = Install the package into the local repository, for use as a dependency in other projects locally
 - deploy = Copy the final package to the remote repository for sharing with other developers and projects
+
+--------------------------------------------------------------------------------------------------------------
