@@ -175,15 +175,28 @@
         <artifactId>jsp-api</artifactId>
         <version>2.2</version>
       </dependency>
-
-      <dependency>
+             
+      <dependencies>
+    <dependency>
         <groupId>junit</groupId>
-        <artifactId>junit-dep</artifactId>
-        <version>4.10</version>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
         <scope>test</scope>
-      </dependency>
+    </dependency>
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>2.45.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>6.8</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
 
-      <dependency>
+            <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-core</artifactId>
         <version>1.2.1</version>
