@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    environment{
+        PATH = "$PATH:/opt/apache-maven-version/bin"
+    }
+    stages{
+        stage("git clone"){
+            steps{
+                echo "git clone done"
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage("sonar analysis"){
+            steps{
+                withSonarQubeEnv('sonar-server-7.8'){
+                    sh ' mvn sonar:sonar'
+                }
+            }
+        }
+    }
+}
