@@ -12,6 +12,7 @@
   <url>http://www.example.com</url>
 
   <properties>
+    <sonar.host.url>http://13.232.87.163:9000/</sonar.host.url>       
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
