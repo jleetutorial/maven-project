@@ -16,12 +16,28 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
 
+<properties>
+    <sonar.host.url>utf-8</sonar.host.url>
+    <sonar.login>sqa_8da083848468ac044ad39f454fff4eaa1069a6a4</sonar.login>
+  </properties>
+         
   <modules>
     <module>server</module>
     <module>webapp</module>
   </modules>
 
   <distributionManagement>
+    <repository>
+      <id>nexusRepo</id>
+      <url>http://13.233.83.170:8081/repository/jenkinrepo/</url>
+      <!--<name>Nexus Releases</name>-->
+    </repository>
+    <snapshotRepository>
+      <id>nexusRepo</id>
+      <url>http://13.233.83.170:8081/repository/jenkinrepo/</url>
+      <!--<name>Nexus Snapshot</name>-->
+    </snapshotRepository>
+
     <site>
       <id>site-server</id>
       <name>Test Project Site</name>
