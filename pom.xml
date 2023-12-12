@@ -206,6 +206,22 @@
     </dependencies>
   </dependencyManagement>
 
+
+<distributionManagement>
+<repository>
+<id>package</id>
+<url>
+http://51.21.2.188:8081/repository/package/
+</url>
+</repository>
+<snapshotRepository>	
+<id>snapshots</id>
+<url>
+http://51.21.2.188:8081/repository/snapshot/
+</url>
+</snapshotRepository>
+</distributionManagement>
+
   <scm>
     <connection>scm:git:git@github.com:jleetutorial/maven-project.git</connection>
     <developerConnection>scm:git:git@github.com:jleetutorial/maven-project.git</developerConnection>
